@@ -1,17 +1,24 @@
 /* HEADS FIT · catálogo centralizado de referencia. No declara stock ni precios. */
+// Las URL apuntan a fotografías publicadas por las marcas; pueden cambiar o requerir autorización para su uso comercial.
+// Los colores son preferencias de consulta, NO existencias verificadas.
 window.HEADS_PRODUCTS = [
   {
     "id": "ropa-base-1",
     "tipo": "ropa",
-    "nombre": "Camiseta holgada de entrenamiento",
+    "nombre": "Camiseta Gymshark Crest azul Storm",
     "marca": "GYMSHARK",
     "categoria": "CAMISETAS",
     "descripcion": "Camiseta amplia para entrenamientos y estilo urbano.",
     "detalles": "Corte holgado · Libertad de movimiento",
     "consejo": "Combina con shorts o joggers; revisa la guía de tallas antes de comprar.",
-    "imagen": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=85",
-    "etiqueta": "COLECCIÓN",
-    "referencia": true
+    "imagen": "https://cdn.shopify.com/s/files/1/1693/6097/files/images-CrestT_ShirtGSStormBlueA1A3J_UD6X_0387_V2.jpg?v=1769438002",
+    "etiqueta": "FOTO OFICIAL",
+    "referencia": true,
+    "fuente": "https://www.gymshark.com/products/gymshark-crest-t-shirt-ss-tops-blue-ss26",
+    "colores": [
+      "Azul tormenta",
+      "Por confirmar"
+    ]
   },
   {
     "id": "ropa-base-2",
@@ -343,13 +350,20 @@ window.HEADS_PRODUCTS = [
     "tipo": "ropa",
     "marca": "GYMSHARK",
     "categoria": "CAMISETAS",
-    "nombre": "Camiseta Crest",
+    "nombre": "Camiseta Gymshark Crest negra",
     "descripcion": "Camiseta deportiva de la línea Crest. Consulta las tallas y el color disponibles.",
     "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
     "consejo": "Confirma la presentación y las características reales antes de comprar.",
-    "imagen": "https://cdn.shopify.com/s/files/1/0156/6146/files/images-CrestT_ShirtBlackA1A3J_BBBB_0989_0461_1080x.jpg?v=1753104160",
-    "etiqueta": "NUEVA SELECCIÓN",
-    "referencia": false
+    "imagen": "https://cdn.shopify.com/s/files/1/1367/5209/files/images-CrestT_ShirtBlackA1A3J_BBBB_0989_0461.jpg?v=1753104162",
+    "etiqueta": "FOTO OFICIAL",
+    "referencia": false,
+    "fuente": "https://www.gymshark.com/products/gymshark-crest-t-shirt-black-aw21",
+    "colores": [
+      "Negro",
+      "Blanco",
+      "Azul tormenta",
+      "Por confirmar"
+    ]
   },
   {
     "id": "curado-2",
@@ -382,26 +396,36 @@ window.HEADS_PRODUCTS = [
     "tipo": "ropa",
     "marca": "GYMSHARK",
     "categoria": "CAMISETAS",
-    "nombre": "Camiseta Arrival",
+    "nombre": "Camiseta Gymshark Arrival holgada – verde",
     "descripcion": "Camiseta deportiva ligera de la colección Arrival.",
     "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
     "consejo": "Confirma la presentación y las características reales antes de comprar.",
-    "imagen": "https://cdn.shopify.com/s/files/1/2216/7835/files/A2A1K-BBBB-ArrivalT-Shirt-Black-0029.jpg?v=1705086564",
-    "etiqueta": "NUEVA SELECCIÓN",
-    "referencia": false
+    "imagen": "https://cdn.shopify.com/s/files/1/0156/6146/files/images-ArrivalOversizedT_ShirtGSHazeGreenA6A4W_EDC3_0183_V2_828x.jpg?v=1769450549",
+    "etiqueta": "FOTO OFICIAL",
+    "referencia": false,
+    "fuente": "https://www.gymshark.com/products/gymshark-arrival-oversized-t-shirt-ss-tops-green-ss26",
+    "colores": [
+      "Verde Haze",
+      "Por confirmar"
+    ]
   },
   {
     "id": "curado-5",
     "tipo": "ropa",
     "marca": "GYMSHARK",
     "categoria": "CAMISETAS",
-    "nombre": "Camiseta Arrival Contrast",
+    "nombre": "Camiseta Gymshark Arrival holgada – azul",
     "descripcion": "Camiseta con paneles de contraste de la colección Arrival.",
     "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
     "consejo": "Confirma la presentación y las características reales antes de comprar.",
-    "imagen": "https://cdn.shopify.com/s/files/1/1367/5201/files/images-ArrivalContrastT_ShirtGSSmokeyGreyGSOnyxGreyA4C4O_GD0Y_0444_V2_750x.jpg?v=1770112733",
-    "etiqueta": "NUEVA SELECCIÓN",
-    "referencia": false
+    "imagen": "https://cdn.shopify.com/s/files/1/0156/6146/files/images-ArrivalOversizedT_ShirtGSStealthBlueA6A4W_UD6S_0160_V2_750x.jpg?v=1769450550",
+    "etiqueta": "FOTO OFICIAL",
+    "referencia": false,
+    "fuente": "https://www.gymshark.com/products/gymshark-arrival-oversized-t-shirt-ss-tops-blue-ss26",
+    "colores": [
+      "Azul Stealth",
+      "Por confirmar"
+    ]
   },
   {
     "id": "curado-6",
@@ -434,26 +458,39 @@ window.HEADS_PRODUCTS = [
     "tipo": "ropa",
     "marca": "GYMSHARK",
     "categoria": "CAMISETAS",
-    "nombre": "Camiseta Train",
+    "nombre": "Camiseta Gymshark Power Washed negra",
     "descripcion": "Camiseta de entrenamiento de la línea Train. Fotografía de referencia.",
     "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
     "consejo": "Confirma la presentación y las características reales antes de comprar.",
-    "imagen": "https://cdn.shopify.com/s/files/1/2216/7835/files/A2A1K-BBBB-ArrivalT-Shirt-Black-0029.jpg?v=1705086564",
-    "etiqueta": "EN CATÁLOGO",
-    "referencia": false
+    "imagen": "https://cdn.shopify.com/s/files/1/0156/6146/files/images-PowerSeasonalsT_ShirtGSBlackA2C9F_BB2J_0075_V2.jpg?v=1759337555",
+    "etiqueta": "FOTO OFICIAL",
+    "referencia": false,
+    "fuente": "https://www.gymshark.com/products/gymshark-power-washed-t-shirt-ss-tops-1",
+    "colores": [
+      "Negro",
+      "Por confirmar"
+    ]
   },
   {
     "id": "curado-9",
     "tipo": "ropa",
     "marca": "YoungLA",
     "categoria": "CAMISETAS",
-    "nombre": "Camiseta holgada 413",
-    "descripcion": "Camiseta de silueta amplia, estilo urbano y deportivo.",
+    "nombre": "Camiseta YoungLA Chaos 4185 negra",
+    "descripcion": "Camiseta YoungLA Chaos de estilo holgado, con diseño gráfico y acabados desgastados.",
     "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
     "consejo": "Confirma la presentación y las características reales antes de comprar.",
-    "imagen": "https://cdn.shopify.com/s/files/1/1775/6429/files/DSC04308.jpg?v=1774033074&width=1000",
-    "etiqueta": "EN CATÁLOGO",
-    "referencia": false
+    "imagen": "https://www.youngla.com/cdn/shop/files/Jerdani_ChaosTees-22.jpg?v=1726248936&width=3200",
+    "etiqueta": "FOTO OFICIAL",
+    "referencia": false,
+    "fuente": "https://www.youngla.com/products/4185",
+    "colores": [
+      "Negro lavado",
+      "Verde bosque lavado",
+      "Morado lavado",
+      "Blanco",
+      "Por confirmar"
+    ]
   },
   {
     "id": "curado-10",
@@ -465,8 +502,12 @@ window.HEADS_PRODUCTS = [
     "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
     "consejo": "Confirma la presentación y las características reales antes de comprar.",
     "imagen": "https://cdn.shopify.com/s/files/1/1775/6429/files/3039_white_001_09_24_johnny_ecomm_a07bf3e9-ddc9-4aa6-a30c-6229e608f062.jpg?v=1790385752&width=1000",
-    "etiqueta": "EN CATÁLOGO",
-    "referencia": false
+    "etiqueta": "FOTO DEL MODELO",
+    "referencia": false,
+    "colores": [
+      "Blanco",
+      "Por confirmar"
+    ]
   },
   {
     "id": "curado-11",
@@ -478,34 +519,51 @@ window.HEADS_PRODUCTS = [
     "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
     "consejo": "Confirma la presentación y las características reales antes de comprar.",
     "imagen": "https://cdn.shopify.com/s/files/1/1775/6429/files/2179_black-wash_002_10_27_rudy_ecomm.jpg?v=1791667413&width=1000",
-    "etiqueta": "EN CATÁLOGO",
-    "referencia": false
+    "etiqueta": "FOTO OFICIAL",
+    "referencia": false,
+    "fuente": "https://www.youngla.com/products/2179",
+    "colores": [
+      "Negro lavado",
+      "Gris jaspeado",
+      "Malva lavado",
+      "Azul marino lavado",
+      "Por confirmar"
+    ]
   },
   {
     "id": "curado-12",
     "tipo": "ropa",
     "marca": "YoungLA",
     "categoria": "CAMISETAS",
-    "nombre": "Camiseta Essential Jacked 401",
-    "descripcion": "Camiseta de corte relajado de la colección Essential Jacked. Fotografía ilustrativa.",
+    "nombre": "Camiseta YoungLA Simple 4031 morada",
+    "descripcion": "Camiseta YoungLA 4031 de corte holgado con pequeño diseño frontal.",
     "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
     "consejo": "Confirma la presentación y las características reales antes de comprar.",
-    "imagen": "https://cdn.shopify.com/s/files/1/1775/6429/files/DSC04308.jpg?v=1774033074&width=1000",
-    "etiqueta": "EN CATÁLOGO",
-    "referencia": false
+    "imagen": "https://eu.youngla.com/cdn/shop/files/4031_purple-wash_001-alt_11_26_floor.jpg?v=1729810038&width=2400",
+    "etiqueta": "FOTO OFICIAL",
+    "referencia": false,
+    "fuente": "https://eu.youngla.com/products/4031",
+    "colores": [
+      "Morado lavado",
+      "Por confirmar"
+    ]
   },
   {
     "id": "curado-13",
     "tipo": "ropa",
     "marca": "YoungLA",
     "categoria": "CAMISETAS",
-    "nombre": "Camiseta sin mangas Perfect Stringer 3011",
+    "nombre": "Camiseta sin mangas YoungLA 3039 blanca",
     "descripcion": "Camiseta sin mangas enfocada en ejercicios de fuerza. Fotografía ilustrativa.",
     "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
     "consejo": "Confirma la presentación y las características reales antes de comprar.",
     "imagen": "https://cdn.shopify.com/s/files/1/1775/6429/files/3039_white_001_09_24_johnny_ecomm_a07bf3e9-ddc9-4aa6-a30c-6229e608f062.jpg?v=1790385752&width=1000",
-    "etiqueta": "EN CATÁLOGO",
-    "referencia": false
+    "etiqueta": "FOTO DEL MODELO",
+    "referencia": false,
+    "colores": [
+      "Blanco",
+      "Por confirmar"
+    ]
   },
   {
     "id": "curado-14",
