@@ -144,3 +144,19 @@
  .hf-brand-main h3{font-size:50px}
 }
 @media(prefers-reduced-motion:reduce){.hf-product,.hf-brand-card{animation:none!important}.hf-brand-card::before,.hf-product-photo img{transition:none!important}}
+
+/* La bolsa debe seguir accesible incluso cuando el menú pasa a modo móvil. */
+@media(max-width:650px){
+ .site-header .wordmark{margin-right:auto;flex-shrink:0}
+ .site-header .header-right{display:flex;order:2;margin-left:auto;gap:0}
+ .site-header .header-right .contact-link,.site-header .header-right>span{display:none}
+ .site-header .menu-toggle{order:3;flex-shrink:0}
+ .site-header .hf-cart-trigger{display:inline-flex;align-items:center;padding:7px 9px;font-size:9px}
+ .site-header .hf-count{width:22px;height:22px;margin-left:6px}
+ .site-header .main-nav{z-index:4}
+}
+@media(max-width:370px){
+ .site-header{padding-left:12px;padding-right:12px}
+ .site-header .wordmark{width:90px;font-size:25px}
+ .site-header .hf-cart-trigger{font-size:8px}
+}
