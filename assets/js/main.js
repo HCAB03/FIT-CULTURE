@@ -17,20 +17,6 @@ document.documentElement.classList.remove('no-js');
     menuToggle?.setAttribute('aria-expanded', 'false');
   }));
 
-  // Filtros del catálogo: filtran los productos renderizados por PHP.
-  const filterButtons = document.querySelectorAll('.filter-btn');
-  const productCards = document.querySelectorAll('.product-card');
-  filterButtons.forEach(button => button.addEventListener('click', () => {
-    filterButtons.forEach(item => item.classList.remove('active'));
-    button.classList.add('active');
-    const filter = button.dataset.filter;
-    productCards.forEach(card => {
-      const visible = filter === 'all' || card.dataset.category === filter;
-      card.hidden = !visible;
-      if (visible && window.gsap) gsap.fromTo(card, {opacity:0,y:18}, {opacity:1,y:0,duration:.45,ease:'power2.out'});
-    });
-  }));
-
   // Animaciones GSAP + ScrollTrigger con alternativa si no carga el CDN.
   const revealFallback = () => document.querySelectorAll('.reveal').forEach(el => {
     el.style.opacity = 1; el.style.transform = 'none';

@@ -1,0 +1,42 @@
+/* Componentes añadidos a la interfaz original, sin alterar su diseño principal. */
+.hf-cart-trigger{border:1px solid #777;background:transparent;color:#fff;font:800 10px var(--font-body);letter-spacing:.11em;padding:11px 13px;cursor:pointer;white-space:nowrap}
+.hf-cart-trigger:hover,.hf-cart-trigger:focus-visible{border-color:var(--lime);color:var(--lime)}
+.hf-count{display:inline-flex;align-items:center;justify-content:center;background:var(--lime);color:#101110;border-radius:50%;min-width:23px;height:23px;margin-left:6px;font-size:11px;padding:0 4px}
+.hf-buy{background:#101110;color:#fff;width:100%;border:1px solid #101110;padding:14px 12px;cursor:pointer;margin-top:5px;font:800 10px var(--font-body);letter-spacing:.1em;transition:background .2s,color .2s}
+.hf-buy:hover,.hf-buy:focus-visible{background:var(--lime);color:#101110;border-color:var(--lime)}
+.hf-buy-detail{margin-top:16px}
+.hf-whatsapp{position:fixed;bottom:22px;right:22px;z-index:80;background:#1cbd60;color:#09120c;border-radius:30px;box-shadow:0 8px 32px #0004;padding:13px 18px;font:800 11px var(--font-body);letter-spacing:.07em}
+.hf-whatsapp:hover{background:#12e36a}
+.hf-drawer,.hf-choose{border:0;background:#f3f4ef;color:#141613;box-shadow:0 20px 80px #0008;max-height:100dvh;overflow:auto}
+.hf-drawer::backdrop,.hf-choose::backdrop{background:#060706b8;backdrop-filter:blur(4px)}
+.hf-drawer{height:100dvh;width:min(470px,100vw);max-width:none;max-height:none;margin:0 0 0 auto;padding:0}
+.hf-drawer-head{display:flex;align-items:start;justify-content:space-between;background:#101110;color:#fff;padding:28px 30px}
+.hf-drawer-head p,.hf-small{font-size:10px;font-weight:700;letter-spacing:.12em;color:#70776a}
+.hf-drawer-head p{color:var(--lime)}
+.hf-drawer-head h2,.hf-choose h2{font:900 48px/.9 var(--font-display);margin:10px 0 0}
+.hf-close,.hf-choose-close{background:none;border:0;font-size:32px;cursor:pointer;color:inherit;line-height:1}
+.hf-drawer-body{padding:12px 30px}
+.hf-item{display:flex;gap:16px;justify-content:space-between;border-bottom:1px solid #d1d4c7;padding:24px 0}
+.hf-item h3{font:800 25px/.98 var(--font-display);margin:8px 0}
+.hf-item p,.hf-item small{display:block;color:#686e63;font-size:11px;line-height:1.6}
+.hf-item-actions{display:flex;align-items:center;align-content:start;justify-content:flex-end;flex-wrap:wrap;gap:8px;min-width:124px}
+.hf-item-actions button{cursor:pointer;min-width:28px;min-height:28px;border:1px solid #b8bcb1;background:none;font-size:18px}
+.hf-item-actions .hf-remove{width:100%;font:700 9px var(--font-body);padding:8px}
+.hf-drawer-foot{position:sticky;bottom:0;background:#fff;padding:25px 30px;border-top:1px solid #ccc}
+.hf-drawer-foot p,.hf-drawer-foot small{display:block;color:#63685f;font-size:11px;line-height:1.6}
+.hf-send,.hf-confirm{display:block;width:100%;background:var(--lime);color:#121611;border:0;padding:17px 14px;cursor:pointer;font:800 12px var(--font-body);letter-spacing:.07em}
+.hf-send:hover,.hf-confirm:hover{background:#adcf00}
+.hf-empty{text-align:center;padding:70px 0}
+.hf-empty h3{font:800 33px var(--font-display)}
+.hf-empty p{color:#73766e;line-height:1.8}
+.hf-empty a{display:inline-block;border-bottom:1px solid #222;margin:14px 10px 0;font-size:11px;font-weight:700}
+.hf-choose{width:min(455px,calc(100vw - 32px));padding:40px;max-height:90dvh}
+.hf-choose-close{position:absolute;right:17px;top:12px}
+.hf-choose .hf-help{font-size:13px;color:#6e746a;line-height:1.6;margin:24px 0}
+.hf-variant-wrap{margin:18px 0 24px}
+.hf-variant-wrap[hidden]{display:none}
+.hf-variant-wrap label{display:block;font-weight:700;font-size:11px;margin-bottom:8px}
+.hf-variant-wrap select{width:100%;padding:14px 12px;border:1px solid #aeb1a7;background:white;color:#111}
+.footer-social .social-note a{color:var(--lime);text-decoration:underline}
+@media(max-width:900px){.hf-cart-trigger{padding:9px}.hf-whatsapp{bottom:12px;right:12px}.hf-drawer-head,.hf-drawer-body,.hf-drawer-foot{padding-left:20px;padding-right:20px}}
+@media(max-width:680px){.hf-drawer{width:100vw}.hf-item{flex-direction:column}.hf-item-actions{justify-content:flex-start}.hf-item-actions .hf-remove{width:auto}.hf-choose{padding:30px 24px}.hf-whatsapp{padding:12px;font-size:10px}}
