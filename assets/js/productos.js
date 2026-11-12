@@ -30,7 +30,7 @@ window.HEADS_PRODUCTS = [
     "material": "100 % algodón",
     "descripcion": "Camiseta de corte regular con pequeño logotipo en el pecho.",
     "uso": "Entrenamiento y descanso.",
-    "etiqueta": "SELECCIÓN VERIFICABLE"
+    "etiqueta": "COLECCIÓN"
   },
   {
     "id": "gs-arrival-green",
@@ -65,7 +65,7 @@ window.HEADS_PRODUCTS = [
     "material": "Tejido deportivo",
     "descripcion": "Camiseta de entrenamiento de corte amplio.",
     "uso": "Entrenamiento de fuerza y uso diario.",
-    "etiqueta": "SELECCIÓN VERIFICABLE"
+    "etiqueta": "COLECCIÓN"
   },
   {
     "id": "gs-arrival-short",
@@ -94,7 +94,7 @@ window.HEADS_PRODUCTS = [
     "material": "Tejido ligero",
     "descripcion": "Pantaloneta corta para sesiones de entrenamiento.",
     "uso": "Entrenamiento en gimnasio.",
-    "etiqueta": "SELECCIÓN VERIFICABLE"
+    "etiqueta": "COLECCIÓN"
   },
   {
     "id": "gs-rival-legging",
@@ -122,7 +122,7 @@ window.HEADS_PRODUCTS = [
     "material": "Tejido elástico sin costuras",
     "descripcion": "Mallas deportivas de ajuste ceñido.",
     "uso": "Entrenamiento y movimiento.",
-    "etiqueta": "SELECCIÓN VERIFICABLE"
+    "etiqueta": "COLECCIÓN"
   },
   {
     "id": "yla-chaos",
@@ -150,7 +150,7 @@ window.HEADS_PRODUCTS = [
     "material": "70 % algodón, 30 % poliéster",
     "descripcion": "Camiseta de acabado lavado y diseño gráfico distintivo.",
     "uso": "Uso urbano y deportivo.",
-    "etiqueta": "SELECCIÓN VERIFICABLE"
+    "etiqueta": "COLECCIÓN"
   },
   {
     "id": "yla-3039",
@@ -178,7 +178,7 @@ window.HEADS_PRODUCTS = [
     "material": "Composición según etiqueta",
     "descripcion": "Diseño sin mangas que permite moverse con libertad.",
     "uso": "Entrenamiento de fuerza.",
-    "etiqueta": "SELECCIÓN VERIFICABLE"
+    "etiqueta": "COLECCIÓN"
   },
   {
     "id": "yla-2179",
@@ -206,7 +206,7 @@ window.HEADS_PRODUCTS = [
     "material": "Composición según etiqueta",
     "descripcion": "Pantalón de corte amplio y estética deportiva.",
     "uso": "Entrenamiento y estilo urbano.",
-    "etiqueta": "SELECCIÓN VERIFICABLE"
+    "etiqueta": "COLECCIÓN"
   },
   {
     "id": "yla-4031",
@@ -234,7 +234,7 @@ window.HEADS_PRODUCTS = [
     "material": "Composición según etiqueta",
     "descripcion": "Camiseta de acabado lavado con pequeño diseño frontal.",
     "uso": "Uso urbano y entrenamiento.",
-    "etiqueta": "SELECCIÓN VERIFICABLE"
+    "etiqueta": "COLECCIÓN"
   },
   {
     "id": "nike-pro",
@@ -262,7 +262,7 @@ window.HEADS_PRODUCTS = [
     "material": "Poliéster y elastano",
     "descripcion": "Prenda ajustada de entrenamiento con tecnología Dri-FIT.",
     "uso": "Ejercicios de fuerza y entrenamiento.",
-    "etiqueta": "SELECCIÓN VERIFICABLE"
+    "etiqueta": "COLECCIÓN"
   },
   {
     "id": "adidas-shorts",
@@ -290,7 +290,7 @@ window.HEADS_PRODUCTS = [
     "material": "Consultar ficha oficial",
     "descripcion": "Pantaloneta deportiva de la línea Designed for Training.",
     "uso": "Gimnasio y entrenamiento.",
-    "etiqueta": "SELECCIÓN VERIFICABLE"
+    "etiqueta": "COLECCIÓN"
   },
   {
     "id": "on-whey",
