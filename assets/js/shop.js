@@ -157,9 +157,9 @@ function card(p,i){
  '<div class="hf-quick-panel"><div class="hf-quick-panel-header"><strong>ELIGE TU OPCIÓN</strong><button type="button" data-close-overlay aria-label="Cerrar opciones">×</button></div>'+
  '<div class="hf-quick-line"><span>'+colKind+'</span><span class="hf-quick-note">Según consulta</span></div>'+
  '<div class="hf-swatches">'+swatches+'</div>'+
+ '<div class="hf-quick-footer"><span>CANTIDAD</span><div class="hf-quantity"><button type="button" data-quick-qty="-1" aria-label="Menos unidades">−</button><output class="hf-quick-qty-value">1</output><button type="button" data-quick-qty="1" aria-label="Más unidades">+</button></div></div>'+
  '<div class="hf-quick-line"><span>'+kind+'</span><span class="hf-quick-note">Toca para añadir</span></div>'+
  '<div class="hf-size-list">'+sizes+'</div>'+
- '<div class="hf-quick-footer"><span>CANTIDAD</span><div class="hf-quantity"><button type="button" data-quick-qty="-1" aria-label="Menos unidades">−</button><output class="hf-quick-qty-value">1</output><button type="button" data-quick-qty="1" aria-label="Más unidades">+</button></div></div>'+
  '</div></div><div class="hf-product-bottom"><span class="hf-product-brand">'+safe(p.marca)+'</span>'+
  '<h3>'+title+'</h3><button type="button" class="hf-detail-link" data-detail="'+id+'">VER DETALLES <span aria-hidden="true">↗</span></button></div></article>';
 }
