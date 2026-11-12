@@ -50,13 +50,14 @@ function makeDialog(className,markup){const d=document.createElement('dialog');d
 function open(d){if(d&&!d.open)d.showModal()}
 function close(d){if(d?.open)d.close()}
 const drawer=makeDialog('hf-drawer','<div class="hf-drawer-head"><div><p>HEADS FIT / TU SELECCIÓN</p><h2>MI BOLSA <span class="hf-count">0</span></h2></div><button class="hf-close" type="button" aria-label="Cerrar bolsa">×</button></div><div class="hf-drawer-body"></div><div class="hf-drawer-foot"></div>');
-const chooser=makeDialog('hf-choose','<button class="hf-choose-close" type="button" aria-label="Cerrar">×</button><p class="hf-small">TU SIGUIENTE ELECCIÓN</p><h2 id="hf-choose-title"></h2><p class="hf-help">Consulta el precio y la disponibilidad por WhatsApp.</p><div class="hf-variant-wrap"><label for="hf-size">¿Qué talla buscas?</label><select id="hf-size"><option value="">Selecciona una talla</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>Por confirmar</option></select></div><button type="button" class="hf-confirm">AÑADIR A MI BOLSA ↗</button>');
+const chooser=makeDialog('hf-choose','<button class="hf-choose-close" type="button" aria-label="Cerrar">×</button><p class="hf-small">PERSONALIZA TU PEDIDO</p><h2 id="hf-choose-title"></h2><p class="hf-help">Selecciona las opciones que prefieres. Confirmaremos su disponibilidad.</p><div class="hf-options-grid"><label class="hf-option"><span id="hf-color-label">COLOR O SABOR</span><select id="hf-color"></select></label><label class="hf-option"><span id="hf-size-label">TALLA O PRESENTACIÓN</span><select id="hf-size"></select></label></div><div class="hf-choice-quantity"><label for="hf-qty">CANTIDAD</label><div class="hf-qty-control"><button type="button" data-choice-adjust="-1" aria-label="Disminuir cantidad">−</button><input id="hf-qty" type="number" min="1" max="99" value="1" inputmode="numeric"><button type="button" data-choice-adjust="1" aria-label="Aumentar cantidad">+</button></div></div><p class="hf-availability">Los colores, tallas y presentaciones son preferencias sujetas a confirmación.</p><button type="button" class="hf-confirm">AÑADIR A MI BOLSA ↗</button>');
 const quick=makeDialog('hf-quick','<button type="button" class="hf-quick-close" aria-label="Cerrar detalle">×</button><div class="hf-quick-layout"><div class="hf-quick-image"></div><div class="hf-quick-body"><p class="hf-small hf-quick-brand"></p><h2 class="hf-quick-title"></h2><p class="hf-quick-desc"></p><div class="hf-quick-info"><span>DETALLES</span><p class="hf-quick-features"></p></div><div class="hf-quick-info"><span>IMPORTANTE</span><p class="hf-quick-advice"></p></div><button type="button" class="hf-quick-add">AÑADIR A MI BOLSA ↗</button><p class="hf-quick-notice">Catálogo orientativo: precios y existencias se confirman por WhatsApp. Las imágenes pueden ser ilustrativas.</p></div></div>');
 let active=null;
-function add(p,variant){
- const next={name:p.nombre,brand:p.marca,category:p.categoria,variant:variant||'',qty:1};
- const old=cart.find(x=>x.name===next.name&&x.brand===next.brand&&x.variant===next.variant);
- if(old)old.qty=Math.min(99,old.qty+1);else cart.push(next);
+function add(p,variant,color,quantity){
+ const qty=Math.min(99,Math.max(1,Math.trunc(Number(quantity)||1)));
+ const next={name:p.nombre,brand:p.marca,category:p.categoria,variant:variant||'',color:color||'',qty};
+ const old=cart.find(x=>x.name===next.name&&x.brand===next.brand&&x.variant===next.variant&&(x.color||'')===next.color);
+ if(old)old.qty=Math.min(99,old.qty+qty);else cart.push(next);
  persist();syncCount();renderCart();close(chooser);open(drawer);
 }
 function renderCart(){
@@ -64,16 +65,28 @@ function renderCart(){
  if(!cart.length){
    body.innerHTML='<div class="hf-empty"><h3>Tu bolsa te espera.</h3><p>Descubre tus favoritos y agrégalos para consultarnos por WhatsApp.</p><a href="catalogo.html">EXPLORAR CATÁLOGO ↗</a></div>';foot.innerHTML='';return;
  }
- body.innerHTML=cart.map((x,i)=>'<div class="hf-item"><div><span class="hf-small">'+safe(x.brand)+' / '+safe(x.category)+'</span><h3>'+safe(x.name)+'</h3>'+(x.variant?'<p>Talla: '+safe(x.variant)+'</p>':'')+'<small>Precio y disponibilidad por confirmar</small></div><div class="hf-item-actions"><button data-qty="-1" data-index="'+i+'" aria-label="Disminuir cantidad">−</button><strong>'+x.qty+'</strong><button data-qty="1" data-index="'+i+'" aria-label="Aumentar cantidad">+</button><button class="hf-remove" data-remove="'+i+'">QUITAR</button></div></div>').join('');
+ body.innerHTML=cart.map((x,i)=>'<div class="hf-item"><div><span class="hf-small">'+safe(x.brand)+' / '+safe(x.category)+'</span><h3>'+safe(x.name)+'</h3>'+(x.color?'<p>Color / sabor: '+safe(x.color)+'</p>':'')+(x.variant?'<p>Talla / presentación: '+safe(x.variant)+'</p>':'')+'<small>Precio y disponibilidad por confirmar</small></div><div class="hf-item-actions"><button data-qty="-1" data-index="'+i+'" aria-label="Disminuir cantidad">−</button><strong>'+x.qty+'</strong><button data-qty="1" data-index="'+i+'" aria-label="Aumentar cantidad">+</button><button class="hf-remove" data-remove="'+i+'">QUITAR</button></div></div>').join('');
  foot.innerHTML='<p>'+units()+' unidad(es) seleccionada(s). Te confirmaremos precios y disponibilidad.</p><button class="hf-send" type="button">PEDIR POR WHATSAPP ↗</button><small>Se abre WhatsApp con el mensaje preparado; confirma el envío allí.</small>';
 }
 function msg(){
- return ['¡Hola! Quisiera consultar mi selección de HEADS FIT:','',...cart.map((x,i)=>(i+1)+'. '+x.name+' · '+x.brand+(x.variant?' · Talla '+x.variant:'')+' · Cantidad '+x.qty),'','Total: '+units()+' unidades.','¿Podrían confirmarme precios, disponibilidad, formas de pago y entrega? ¡Gracias!'].join('\n');
+ return ['¡Hola! Quisiera consultar mi selección de HEADS FIT:','',...cart.map((x,i)=>(i+1)+'. '+x.name+' · '+x.brand+(x.color?' · Color/sabor: '+x.color:'')+(x.variant?' · Talla/presentación: '+x.variant:'')+' · Cantidad '+x.qty),'','Total: '+units()+' unidades.','¿Podrían confirmarme precios, disponibilidad, formas de pago y entrega? ¡Gracias!'].join('\n');
+}
+function optionsFor(p){
+ if(p.tipo==='ropa')return {colour:'COLOR',size:'TALLA',colours:p.colores?.length?p.colores:['Negro','Blanco','Gris','Azul','Verde','Por confirmar'],sizes:['XS','S','M','L','XL','XXL','Por confirmar']};
+ if(p.tipo==='suplementos')return {colour:'SABOR',size:'PRESENTACIÓN',colours:['Sin sabor','Chocolate','Vainilla','Fresa','Otro / por confirmar'],sizes:['Presentación pequeña','Presentación mediana','Presentación grande','Por confirmar']};
+ return {colour:'COLOR',size:'TALLA / MODELO',colours:['Negro','Blanco','Gris','Azul','Otro / por confirmar'],sizes:['Única / estándar','S','M','L','XL','Por confirmar']};
 }
 function choose(p){
- if(!p)return;active=p;close(quick);$('#hf-choose-title',chooser).textContent=p.nombre;
- $('.hf-variant-wrap',chooser).hidden=p.tipo!=='ropa';$('#hf-size',chooser).value='';
- $('.hf-help',chooser).textContent='Consulta el precio y la disponibilidad por WhatsApp.';
+ if(!p)return;active=p;close(quick);
+ $('#hf-choose-title',chooser).textContent=p.nombre;
+ const cfg=optionsFor(p);
+ $('#hf-color-label',chooser).textContent=cfg.colour;
+ $('#hf-size-label',chooser).textContent=cfg.size;
+ const paint=(selector,label,options)=>{const node=$(selector,chooser);node.innerHTML='<option value="">'+safe('Selecciona '+label.toLowerCase())+'</option>'+options.map(x=>'<option value="'+safe(x)+'">'+safe(x)+'</option>').join('');node.value='';};
+ paint('#hf-color',cfg.colour,cfg.colours);
+ paint('#hf-size',cfg.size,cfg.sizes);
+ $('#hf-qty',chooser).value='1';
+ $('.hf-help',chooser).textContent='Elige tus opciones preferidas para consultar disponibilidad.';
  open(chooser);
 }
 function show(p){
@@ -96,17 +109,21 @@ document.addEventListener('click',e=>{
  const addBtn=t.closest('[data-buy]');if(addBtn){choose(byId(addBtn.dataset.buy));return;}
  const detailBtn=t.closest('[data-detail]');if(detailBtn){show(byId(detailBtn.dataset.detail));return;}
  if(t.closest('.hf-quick-add'))choose(active);
+ const adjust=t.closest('[data-choice-adjust]');
+ if(adjust){const el=$('#hf-qty',chooser);el.value=String(Math.min(99,Math.max(1,(Number(el.value)||1)+Number(adjust.dataset.choiceAdjust))));}
  if(t.closest('.hf-confirm')&&active){
-   const size=$('#hf-size',chooser).value;
-   if(active.tipo==='ropa'&&!size){$('.hf-help',chooser).textContent='Selecciona una talla o elige «Por confirmar».';$('#hf-size',chooser).focus();return;}
-   add(active,size);
+   const color=$('#hf-color',chooser).value,size=$('#hf-size',chooser).value;
+   if(!color){$('.hf-help',chooser).textContent='Selecciona primero el color o sabor.';$('#hf-color',chooser).focus();return;}
+   if(!size){$('.hf-help',chooser).textContent='Selecciona la talla o presentación.';$('#hf-size',chooser).focus();return;}
+   const quantity=Math.min(99,Math.max(1,Math.trunc(Number($('#hf-qty',chooser).value)||1)));
+   add(active,size,color,quantity);
  }
  const change=t.closest('[data-qty]');if(change){const i=Number(change.dataset.index);if(cart[i]){cart[i].qty=Math.max(0,Math.min(99,cart[i].qty+Number(change.dataset.qty)));if(cart[i].qty===0)cart.splice(i,1);persist();renderCart();syncCount()}}
  const remove=t.closest('[data-remove]');if(remove){cart.splice(Number(remove.dataset.remove),1);persist();renderCart();syncCount()}
  if(t.closest('.hf-send')&&cart.length){window.open(wa(msg()),'_blank','noopener,noreferrer')}
 });
 [drawer,chooser,quick].forEach(d=>d.addEventListener('click',e=>{if(e.target===d)close(d)}));
-const whatsapp=document.createElement('a');whatsapp.className='hf-whatsapp';whatsapp.href=wa('¡Hola! Quisiera información sobre HEADS FIT.');whatsapp.target='_blank';whatsapp.rel='noopener noreferrer';whatsapp.setAttribute('aria-label','Hablar por WhatsApp');whatsapp.textContent='✆  HABLAR POR WHATSAPP';document.body.append(whatsapp);
+const whatsapp=document.createElement('a');whatsapp.className='hf-whatsapp';whatsapp.href=wa('¡Hola! Quisiera información sobre HEADS FIT.');whatsapp.target='_blank';whatsapp.rel='noopener noreferrer';whatsapp.setAttribute('aria-label','Hablar por WhatsApp');whatsapp.innerHTML='<svg viewBox="0 0 32 32" width="29" height="29" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16 2.5a13.2 13.2 0 0 0-11.3 20L2.8 29l6.7-1.8A13.3 13.3 0 1 0 16 2.5Zm0 24a10.8 10.8 0 0 1-5.5-1.5l-.4-.3-4 1.1 1.1-3.9-.3-.4a10.8 10.8 0 1 1 9.1 5Zm6-7.7c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1a8.8 8.8 0 0 1-4.4-3.9c-.3-.5.3-.5.8-1.6.1-.2.1-.4 0-.6l-1-2.3c-.2-.5-.4-.4-.7-.4h-.6c-.3 0-.6.1-.9.4-.3.4-1.2 1.2-1.2 2.8s1.3 3.2 1.4 3.4c.2.2 2.5 3.7 5.9 5.1 2.2.9 3.1.8 4.2.7.6-.1 1.9-.8 2.2-1.6.3-.8.3-1.5.2-1.6-.1-.2-.3-.3-.6-.5Z"/></svg>';document.body.append(whatsapp);
 const social=$('.footer-social .social-note');if(social)social.innerHTML='¿NECESITAS AYUDA?<br><a href="'+wa('Hola, quisiera información sobre HEADS FIT.')+'" target="_blank" rel="noopener noreferrer">ESCRÍBENOS POR WHATSAPP ↗</a>';
 $$('.footer-social [aria-label="WhatsApp"]').forEach(icon=>{const a=document.createElement('a');a.href=wa('Hola, quisiera información sobre HEADS FIT.');a.target='_blank';a.rel='noopener noreferrer';a.className=icon.className;a.setAttribute('aria-label','Contactar por WhatsApp');a.innerHTML=icon.innerHTML;icon.replaceWith(a)});
 syncCount();renderCart();
