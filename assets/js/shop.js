@@ -1,7 +1,7 @@
 /* HEADS FIT · catálogo V3 sin backend · pedido consultivo por WhatsApp */
 (() => {
 'use strict';
-const PHONE='593983551261', KEY='heads-fit-pedido-v1';
+const PHONE='593983551261', KEY='heads-fit-pedido-v2';
 const $=(s,root=document)=>root.querySelector(s), $$=(s,root=document)=>[...root.querySelectorAll(s)];
 const clean=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
 const safe=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
