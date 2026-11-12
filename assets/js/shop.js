@@ -46,7 +46,18 @@ function makeDialog(className,markup){const d=document.createElement('dialog');d
 function open(d){if(d&&!d.open)d.showModal()}
 function close(d){if(d?.open)d.close()}
 const drawer=makeDialog('hf-drawer','<div class="hf-drawer-head"><div><p>HEADS FIT / TU SELECCIÓN</p><h2>MI BOLSA <span class="hf-count">0</span></h2></div><button class="hf-close" type="button" aria-label="Cerrar bolsa">×</button></div><div class="hf-drawer-body"></div><div class="hf-drawer-foot"></div>');
-const chooser=makeDialog('hf-choose','<button class="hf-choose-close" type="button" aria-label="Cerrar">×</button><p class="hf-small">PERSONALIZA TU PEDIDO</p><h2 id="hf-choose-title"></h2><p class="hf-help">Selecciona las opciones que prefieres. Confirmaremos su disponibilidad.</p><div class="hf-options-grid"><label class="hf-option"><span id="hf-color-label">COLOR O SABOR</span><select id="hf-color"></select></label><label class="hf-option"><span id="hf-size-label">TALLA O PRESENTACIÓN</span><select id="hf-size"></select></label></div><div class="hf-choice-quantity"><label for="hf-qty">CANTIDAD</label><div class="hf-qty-control"><button type="button" data-choice-adjust="-1" aria-label="Disminuir cantidad">−</button><input id="hf-qty" type="number" min="1" max="99" value="1" inputmode="numeric"><button type="button" data-choice-adjust="1" aria-label="Aumentar cantidad">+</button></div></div><p class="hf-availability">Los colores, tallas y presentaciones son preferencias sujetas a confirmación.</p><button type="button" class="hf-confirm">AÑADIR A MI BOLSA ↗</button>');
+const chooser=makeDialog('hf-choose',
+ '<div class="hf-sheet-handle" aria-hidden="true"></div>'+
+ '<button class="hf-choose-close" type="button" aria-label="Cerrar selector">×</button>'+
+ '<div class="hf-sheet-top"><p>HEADS FIT / TU SELECCIÓN</p><h2>ELIGE TU PRODUCTO</h2></div>'+
+ '<div class="hf-sheet-product"><img class="hf-sheet-image" alt="" data-fallback="1"><div><p class="hf-sheet-brand"></p><h3 id="hf-choose-title"></h3><span>Precio y disponibilidad por confirmar</span></div></div>'+
+ '<div class="hf-sheet-body">'+
+ '<div class="hf-sheet-group"><div class="hf-sheet-label"><strong class="hf-sheet-color-label">COLOR</strong><span class="hf-sheet-current-color"></span></div><div class="hf-sheet-swatches" role="group" aria-label="Elegir color"></div></div>'+
+ '<div class="hf-sheet-group"><div class="hf-sheet-label"><strong class="hf-sheet-size-label">TALLA</strong><span class="hf-sheet-size-hint" aria-live="polite">Elige una opción</span></div><div class="hf-sheet-sizes" role="group" aria-label="Elegir talla"></div></div>'+
+ '<div class="hf-sheet-group hf-sheet-qty-group"><div class="hf-sheet-label"><strong>CANTIDAD</strong></div><div class="hf-sheet-quantity"><button type="button" data-sheet-qty="-1" aria-label="Reducir cantidad">−</button><output class="hf-sheet-qty-value">1</output><button type="button" data-sheet-qty="1" aria-label="Aumentar cantidad">+</button></div></div>'+
+ '</div>'+
+ '<div class="hf-sheet-sticky"><button class="hf-confirm" type="button" disabled>ELIGE UNA TALLA PARA CONTINUAR</button><p class="hf-help" role="status">Confirmaremos las opciones y el precio por WhatsApp.</p></div>');
+let chosen={index:0,size:'',qty:1};
 const quick=makeDialog('hf-quick','<button type="button" class="hf-quick-close" aria-label="Cerrar detalle">×</button><div class="hf-quick-layout"><div class="hf-quick-image"></div><div class="hf-quick-body"><p class="hf-small hf-quick-brand"></p><h2 class="hf-quick-title"></h2><p class="hf-quick-desc"></p><div class="hf-quick-info"><span>DETALLES</span><p class="hf-quick-features"></p></div><div class="hf-quick-info"><span>IMPORTANTE</span><p class="hf-quick-advice"></p></div><button type="button" class="hf-quick-add">AÑADIR A MI BOLSA ↗</button><p class="hf-quick-notice">Catálogo orientativo: precios y existencias se confirman por WhatsApp. Las imágenes pueden ser ilustrativas.</p><a class="hf-original-source" target="_blank" rel="noopener noreferrer" hidden>VER REFERENCIA DEL PRODUCTO ↗</a></div></div>');
 let active=null;
 function add(p,variant,color,quantity){
@@ -67,23 +78,40 @@ function renderCart(){
 function msg(){
  return ['¡Hola! Quisiera consultar mi selección de HEADS FIT:','',...cart.map((x,i)=>(i+1)+'. '+x.name+' · '+x.brand+(x.color?' · Color/sabor: '+x.color:'')+(x.variant?' · Talla/presentación: '+x.variant:'')+' · Cantidad '+x.qty),'','Total: '+units()+' unidades.','¿Podrían confirmarme precios, disponibilidad, formas de pago y entrega? ¡Gracias!'].join('\n');
 }
-function optionsFor(p){
- if(p.tipo==='ropa')return {colour:'COLOR',size:'TALLA',colours:p.colores?.length?p.colores:['Negro','Blanco','Gris','Azul','Verde','Por confirmar'],sizes:['XS','S','M','L','XL','XXL','Por confirmar']};
- if(p.tipo==='suplementos')return {colour:'SABOR',size:'PRESENTACIÓN',colours:['Sin sabor','Chocolate','Vainilla','Fresa','Otro / por confirmar'],sizes:['Presentación pequeña','Presentación mediana','Presentación grande','Por confirmar']};
- return {colour:'COLOR',size:'TALLA / MODELO',colours:['Negro','Blanco','Gris','Azul','Otro / por confirmar'],sizes:['Única / estándar','S','M','L','XL','Por confirmar']};
-}
-function choose(p){
- if(!p)return;active=p;close(quick);
+function choose(p,variant=0){
+ if(!p)return;
+ active=p;close(quick);
+ const variants=p.variantes?.length?p.variantes:[{nombre:'Por confirmar',hex:'#888',imagen:p.imagen}];
+ const sizes=p.tallas?.length?p.tallas:['Por confirmar'];
+ chosen={index:Math.max(0,Math.min(variants.length-1,variant)),size:'',qty:1};
  $('#hf-choose-title',chooser).textContent=p.nombre;
- const cfg=optionsFor(p);
- $('#hf-color-label',chooser).textContent=cfg.colour;
- $('#hf-size-label',chooser).textContent=cfg.size;
- const paint=(selector,label,options)=>{const node=$(selector,chooser);node.innerHTML='<option value="">'+safe('Selecciona '+label.toLowerCase())+'</option>'+options.map(x=>'<option value="'+safe(x)+'">'+safe(x)+'</option>').join('');node.value='';};
- paint('#hf-color',cfg.colour,cfg.colours);
- paint('#hf-size',cfg.size,cfg.sizes);
- $('#hf-qty',chooser).value='1';
- $('.hf-help',chooser).textContent='Elige tus opciones preferidas para consultar disponibilidad.';
+ $('.hf-sheet-brand',chooser).textContent=p.marca;
+ $('.hf-sheet-color-label',chooser).textContent=p.tipo==='suplementos'?'SABOR':'COLOR';
+ $('.hf-sheet-size-label',chooser).textContent=p.tipo==='ropa'?'TALLA':p.tipo==='suplementos'?'PRESENTACIÓN':'TAMAÑO / PRESENTACIÓN';
+ $('.hf-sheet-sizes',chooser).innerHTML=sizes.map(v=>'<button type="button" class="hf-sheet-size" data-sheet-size="'+safe(v)+'" aria-pressed="false">'+safe(v.replace(' / consultar',''))+'</button>').join('');
+ $('.hf-sheet-swatches',chooser).innerHTML=variants.map((v,i)=>'<button type="button" class="hf-sheet-swatch'+(i===chosen.index?' selected':'')+'" data-sheet-color="'+i+'" aria-pressed="'+(i===chosen.index?'true':'false')+'" aria-label="Color o sabor: '+safe(v.nombre)+'" title="'+safe(v.nombre)+'"><i style="background:'+safe(v.hex||'#999')+'"></i></button>').join('');
+ $('.hf-sheet-qty-value',chooser).textContent='1';
+ $('.hf-sheet-size-hint',chooser).textContent='Selecciona tu opción';
+ $('.hf-help',chooser).textContent='Confirmaremos opciones, precio y disponibilidad por WhatsApp.';
+ updateSheet();
  open(chooser);
+}
+function updateSheet(){
+ if(!active)return;
+ const variants=active.variantes?.length?active.variantes:[{nombre:'Por confirmar',imagen:active.imagen}];
+ const v=variants[chosen.index]||variants[0];
+ const photo=$('.hf-sheet-image',chooser);
+ photo.src=v.imagen||active.imagen||PLACEHOLDER;
+ photo.alt=active.nombre+' · '+v.nombre;
+ delete photo.dataset.failed;
+ $('.hf-sheet-current-color',chooser).textContent=v.nombre;
+ $$('.hf-sheet-swatch',chooser).forEach((btn,i)=>{const yes=i===chosen.index;btn.classList.toggle('selected',yes);btn.setAttribute('aria-pressed',String(yes));});
+ $$('.hf-sheet-size',chooser).forEach(btn=>{const yes=btn.dataset.sheetSize===chosen.size;btn.classList.toggle('selected',yes);btn.setAttribute('aria-pressed',String(yes));});
+ const button=$('.hf-confirm',chooser);
+ button.disabled=!chosen.size;
+ button.textContent=chosen.size?'AÑADIR '+chosen.qty+' A MI BOLSA ↗':'ELIGE UNA OPCIÓN PARA CONTINUAR';
+ $('.hf-sheet-size-hint',chooser).textContent=chosen.size?'Elegiste: '+chosen.size:'Selecciona tu opción';
+ $('.hf-sheet-qty-value',chooser).textContent=String(chosen.qty);
 }
 function show(p,variantIndex=0){
  if(!p)return;active=p;
@@ -100,6 +128,24 @@ function show(p,variantIndex=0){
 const byId=id=>products.find(p=>p.id===id);
 document.addEventListener('click',e=>{
  const t=e.target;
+ const sheetColor=t.closest('[data-sheet-color]');
+ if(sheetColor&&chooser.open){
+   chosen.index=Number(sheetColor.dataset.sheetColor);
+   updateSheet();
+   return;
+ }
+ const sheetSize=t.closest('[data-sheet-size]');
+ if(sheetSize&&chooser.open){
+   chosen.size=sheetSize.dataset.sheetSize;
+   updateSheet();
+   return;
+ }
+ const sheetQty=t.closest('[data-sheet-qty]');
+ if(sheetQty&&chooser.open){
+   chosen.qty=Math.min(99,Math.max(1,chosen.qty+Number(sheetQty.dataset.sheetQty)));
+   updateSheet();
+   return;
+ }
  const swatch=t.closest('[data-swatch-index]');
  if(swatch){
    const card=swatch.closest('.hf-product'),p=card&&byId(card.dataset.productId),index=Number(swatch.dataset.swatchIndex);
@@ -108,11 +154,24 @@ document.addEventListener('click',e=>{
    const caption=$('.hf-variant-name',card);if(caption)caption.textContent=p.variantes[index].nombre;
    const img=$('img.hf-product-photo',card),item=p.variantes[index];
    if(img){img.src=item.imagen||p.imagen;img.alt=p.nombre+' · '+item.nombre;delete img.dataset.failed;}
-   $('.hf-swatch',card).forEach((b,i)=>{b.classList.toggle('selected',i===index);b.setAttribute('aria-pressed',String(i===index));});
+   $$('.hf-swatch',card).forEach((b,i)=>{b.classList.toggle('selected',i===index);b.setAttribute('aria-pressed',String(i===index));});
    return;
  }
  const opener=t.closest('[data-overlay-open]');
- if(opener){const card=opener.closest('.hf-product');if(card){const opened=!card.classList.contains('is-open');$('.hf-product.is-open').filter(x=>x!==card).forEach(x=>{x.classList.remove('is-open');$('.hf-photo-open',x)?.setAttribute('aria-expanded','false');});card.classList.toggle('is-open',opened);opener.setAttribute('aria-expanded',String(opened));}return;}
+ if(opener){
+   const card=opener.closest('.hf-product');
+   if(card){
+     if(typeof window.matchMedia==='function'&&window.matchMedia('(hover: none), (pointer: coarse), (max-width: 760px)').matches){
+       choose(byId(card.dataset.productId),Number(card.dataset.colorIndex||0));
+       return;
+     }
+     const opened=!card.classList.contains('is-open');
+     $$('.hf-product.is-open').filter(x=>x!==card).forEach(x=>{x.classList.remove('is-open');$('.hf-photo-open',x)?.setAttribute('aria-expanded','false');});
+     card.classList.toggle('is-open',opened);
+     opener.setAttribute('aria-expanded',String(opened));
+   }
+   return;
+ }
  const closeQuick=t.closest('[data-close-overlay]');
  if(closeQuick){const card=closeQuick.closest('.hf-product');card?.classList.remove('is-open');$('.hf-photo-open',card)?.setAttribute('aria-expanded','false');return;}
  const qChange=t.closest('[data-quick-qty]');
@@ -126,14 +185,11 @@ document.addEventListener('click',e=>{
  const addBtn=t.closest('[data-buy]');if(addBtn){choose(byId(addBtn.dataset.buy));return;}
  const detailBtn=t.closest('[data-detail]');if(detailBtn){const card=detailBtn.closest('.hf-product');show(byId(detailBtn.dataset.detail),Number(card?.dataset.colorIndex||0));return;}
  if(t.closest('.hf-quick-add'))choose(active);
- const adjust=t.closest('[data-choice-adjust]');
- if(adjust){const el=$('#hf-qty',chooser);el.value=String(Math.min(99,Math.max(1,(Number(el.value)||1)+Number(adjust.dataset.choiceAdjust))));}
- if(t.closest('.hf-confirm')&&active){
-   const color=$('#hf-color',chooser).value,size=$('#hf-size',chooser).value;
-   if(!color){$('.hf-help',chooser).textContent='Selecciona primero el color o sabor.';$('#hf-color',chooser).focus();return;}
-   if(!size){$('.hf-help',chooser).textContent='Selecciona la talla o presentación.';$('#hf-size',chooser).focus();return;}
-   const quantity=Math.min(99,Math.max(1,Math.trunc(Number($('#hf-qty',chooser).value)||1)));
-   add(active,size,color,quantity);
+ if(t.closest('.hf-confirm')&&active&&chooser.open){
+   if(!chosen.size)return;
+   const variant=active.variantes?.[chosen.index]?.nombre||'Por confirmar';
+   add(active,chosen.size,variant,chosen.qty);
+   return;
  }
  const change=t.closest('[data-qty]');if(change){const i=Number(change.dataset.index);if(cart[i]){cart[i].qty=Math.max(0,Math.min(99,cart[i].qty+Number(change.dataset.qty)));if(cart[i].qty===0)cart.splice(i,1);persist();renderCart();syncCount()}}
  const remove=t.closest('[data-remove]');if(remove){cart.splice(Number(remove.dataset.remove),1);persist();renderCart();syncCount()}
@@ -155,7 +211,7 @@ function card(p,i){
  return '<article class="hf-product hf-compact" data-product-id="'+id+'" data-color-index="0" data-quantity="1" style="--stagger:'+Math.min(i%12,11)+'">'+
  '<div class="hf-product-media"><img class="hf-product-photo" src="'+img+'" alt="'+title+'" data-fallback="1" loading="lazy" decoding="async">'+
  '<span class="hf-tag">'+safe(p.etiqueta||'COLECCIÓN')+'</span>'+
- '<button type="button" class="hf-photo-open" data-overlay-open aria-expanded="false" aria-label="Elegir opciones para '+title+'"><span>VER OPCIONES</span><b>+</b></button>'+
+ '<button type="button" class="hf-photo-open" data-overlay-open aria-expanded="false" aria-label="Elegir opciones para '+title+'"><span>PERSONALIZAR</span><b>+</b></button>'+
  '<div class="hf-quick-panel"><div class="hf-quick-panel-header"><strong>ELIGE TU OPCIÓN</strong><button type="button" data-close-overlay aria-label="Cerrar opciones">×</button></div>'+
  '<div class="hf-quick-line"><span>'+colKind+'</span><span class="hf-quick-note">Según consulta</span></div>'+
  '<div class="hf-swatches">'+swatches+'<small class="hf-variant-name">'+safe(variants[0].nombre)+'</small></div>'+
