@@ -74,7 +74,7 @@ window.HEADS_PRODUCTS = [
     "nombre": "Pantaloneta Arrival 5” negra",
     "categoria": "PANTALONETAS",
     "imagen": "https://cdn.shopify.com/s/files/1/0156/6146/files/images-Arrival5ShortsBlackA2A1M_BBBB_1826_A_Edit_1080x.jpg?v=1750084637",
-    "fuente": "https://www.gymshark.com/collections/arrival",
+    "fuente": "https://www.gymshark.com/products/gymshark-arrival-5-shorts-black-ss22",
     "variantes": [
       {
         "nombre": "Negro",
@@ -90,8 +90,8 @@ window.HEADS_PRODUCTS = [
       "XL",
       "XXL"
     ],
-    "ajuste": "Deportivo",
-    "material": "Tejido ligero",
+    "ajuste": "Entallado, entrepierna de 5 pulgadas",
+    "material": "100 % poliéster",
     "descripcion": "Pantaloneta corta para sesiones de entrenamiento.",
     "uso": "Entrenamiento en gimnasio.",
     "etiqueta": "COLECCIÓN"
@@ -100,10 +100,10 @@ window.HEADS_PRODUCTS = [
     "id": "gs-rival-legging",
     "tipo": "ropa",
     "marca": "GYMSHARK",
-    "nombre": "Mallas Rival Seamless negras",
+    "nombre": "Mallas Gymshark Relay Seamless High-Rise negras",
     "categoria": "LEGGINGS",
     "imagen": "https://cdn.shopify.com/s/files/1/0156/6146/files/images-RivalSeamlessLeggingGSBlackB6B2M_BB2J_2499_V1_1080x.jpg?v=1774905129",
-    "fuente": "https://www.gymshark.com/collections/leggings",
+    "fuente": "https://www.gymshark.com/products/gymshark-interval-seamless-legging-leggings-black-ss26",
     "variantes": [
       {
         "nombre": "Negro",
@@ -118,9 +118,9 @@ window.HEADS_PRODUCTS = [
       "L",
       "XL"
     ],
-    "ajuste": "Ajustado",
-    "material": "Tejido elástico sin costuras",
-    "descripcion": "Mallas deportivas de ajuste ceñido.",
+    "ajuste": "Cintura alta y ajuste ceñido",
+    "material": "59 % nailon, 31 % poliéster y 10 % elastano",
+    "descripcion": "Mallas Relay sin costuras, de cintura alta y con detalles acanalados.",
     "uso": "Entrenamiento y movimiento.",
     "etiqueta": "COLECCIÓN"
   },
@@ -156,10 +156,10 @@ window.HEADS_PRODUCTS = [
     "id": "yla-3039",
     "tipo": "ropa",
     "marca": "YoungLA",
-    "nombre": "Camiseta sin mangas 3039 blanca",
+    "nombre": "Camiseta sin mangas YoungLA Engineered Mesh 3039 blanca",
     "categoria": "CAMISETAS",
     "imagen": "https://cdn.shopify.com/s/files/1/1775/6429/files/3039_white_001_09_24_johnny_ecomm_a07bf3e9-ddc9-4aa6-a30c-6229e608f062.jpg?v=1790385752&width=1000",
-    "fuente": "https://www.youngla.com/collections/tank-tops",
+    "fuente": "https://www.youngla.com/products/3039",
     "variantes": [
       {
         "nombre": "Blanco",
@@ -174,9 +174,9 @@ window.HEADS_PRODUCTS = [
       "XL",
       "XXL"
     ],
-    "ajuste": "Sin mangas",
-    "material": "Composición según etiqueta",
-    "descripcion": "Diseño sin mangas que permite moverse con libertad.",
+    "ajuste": "Talla habitual",
+    "material": "100 % poliéster",
+    "descripcion": "Camiseta sin mangas de malla ligera para sesiones de entrenamiento.",
     "uso": "Entrenamiento de fuerza.",
     "etiqueta": "COLECCIÓN"
   },
@@ -184,10 +184,10 @@ window.HEADS_PRODUCTS = [
     "id": "yla-2179",
     "tipo": "ropa",
     "marca": "YoungLA",
-    "nombre": "Pantalón 2179 negro lavado",
+    "nombre": "Jogger YoungLA The Immortal Club 2179 negro lavado",
     "categoria": "PANTALONES",
     "imagen": "https://cdn.shopify.com/s/files/1/1775/6429/files/2179_black-wash_002_10_27_rudy_ecomm.jpg?v=1791667413&width=1000",
-    "fuente": "https://www.youngla.com/products/2179",
+    "fuente": "https://eu.youngla.com/products/2179",
     "variantes": [
       {
         "nombre": "Negro lavado",
@@ -203,8 +203,8 @@ window.HEADS_PRODUCTS = [
       "XXL"
     ],
     "ajuste": "Holgado",
-    "material": "Composición según etiqueta",
-    "descripcion": "Pantalón de corte amplio y estética deportiva.",
+    "material": "100 % algodón tipo terry",
+    "descripcion": "Jogger con cintura ajustable y puños acanalados en el tobillo.",
     "uso": "Entrenamiento y estilo urbano.",
     "etiqueta": "COLECCIÓN"
   },
@@ -212,10 +212,10 @@ window.HEADS_PRODUCTS = [
     "id": "yla-4031",
     "tipo": "ropa",
     "marca": "YoungLA",
-    "nombre": "Camiseta Simple 4031 morada",
+    "nombre": "Camiseta YoungLA Simple Tees 4031 morada",
     "categoria": "CAMISETAS",
     "imagen": "https://eu.youngla.com/cdn/shop/files/4031_purple-wash_001-alt_11_26_floor.jpg?v=1729810038&width=1200",
-    "fuente": "https://eu.youngla.com/products/4031",
+    "fuente": "https://shop.tiktok.com/us/pdp/simple-tees-by-youngla-boxy-fit-acid-washed-100-cotton-t-shirt/1730284788568396279",
     "variantes": [
       {
         "nombre": "Morado lavado",
@@ -230,8 +230,8 @@ window.HEADS_PRODUCTS = [
       "XL",
       "XXL"
     ],
-    "ajuste": "Holgado",
-    "material": "Composición según etiqueta",
+    "ajuste": "Corte cuadrado, largo corto",
+    "material": "100 % algodón",
     "descripcion": "Camiseta de acabado lavado con pequeño diseño frontal.",
     "uso": "Uso urbano y entrenamiento.",
     "etiqueta": "COLECCIÓN"
