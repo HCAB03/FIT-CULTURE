@@ -203,3 +203,5 @@
  .site-header .main-nav a{font-size:27px;min-height:57px}
  .site-header .hf-cart-trigger{font-size:9px}
 }
+
+.hf-original-source:not([hidden]){display:inline-flex;margin:10px 0 0;padding:11px 0;border-bottom:1px solid #859f3a;font-size:10px;font-weight:800;letter-spacing:.08em;color:#314213}
