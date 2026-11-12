@@ -1,997 +1,480 @@
-/* HEADS FIT · catálogo centralizado de referencia. No declara stock ni precios. */
-// Las URL apuntan a fotografías publicadas por las marcas; pueden cambiar o requerir autorización para su uso comercial.
-// Los colores son preferencias de consulta, NO existencias verificadas.
+/* HEADS FIT · catálogo curado: fotografía identificada por referencia del producto.
+   No indica inventario, distribución autorizada ni licencia de reutilización de imágenes.
+   Solicitar autorización y sustituir por fotos propias antes de su uso comercial. */
 window.HEADS_PRODUCTS = [
   {
-    "id": "ropa-base-1",
-    "tipo": "ropa",
-    "nombre": "Camiseta Gymshark Crest azul Storm",
-    "marca": "GYMSHARK",
-    "categoria": "CAMISETAS",
-    "descripcion": "Camiseta amplia para entrenamientos y estilo urbano.",
-    "detalles": "Corte holgado · Libertad de movimiento",
-    "consejo": "Combina con shorts o joggers; revisa la guía de tallas antes de comprar.",
-    "imagen": "https://cdn.shopify.com/s/files/1/1693/6097/files/images-CrestT_ShirtGSStormBlueA1A3J_UD6X_0387_V2.jpg?v=1769438002",
-    "etiqueta": "FOTO OFICIAL",
-    "referencia": true,
-    "fuente": "https://www.gymshark.com/products/gymshark-crest-t-shirt-ss-tops-blue-ss26",
-    "colores": [
-      "Azul tormenta",
-      "Por confirmar"
-    ]
-  },
-  {
-    "id": "ropa-base-2",
-    "tipo": "ropa",
-    "nombre": "Camiseta sin mangas",
-    "marca": "YoungLA",
-    "categoria": "CAMISETAS",
-    "descripcion": "Camiseta sin mangas con espalda abierta para sesiones de fuerza.",
-    "detalles": "Diseño sin mangas · Movilidad de hombros",
-    "consejo": "Ideal para rutinas de tren superior y ambientes interiores.",
-    "imagen": "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=900&q=85",
-    "etiqueta": "COLECCIÓN",
-    "referencia": true
-  },
-  {
-    "id": "ropa-base-3",
-    "tipo": "ropa",
-    "nombre": "Mallas de entrenamiento",
-    "marca": "UNDER ARMOUR",
-    "categoria": "LEGGINGS",
-    "descripcion": "Leggings de entrenamiento para movilidad y comodidad.",
-    "detalles": "Ajuste ceñido · Movimiento flexible",
-    "consejo": "Busca una talla que no limite las sentadillas ni los estiramientos.",
-    "imagen": "https://images.unsplash.com/photo-1506629905607-d9d5f7c7f0a4?auto=format&fit=crop&w=900&q=85",
-    "etiqueta": "COLECCIÓN",
-    "referencia": true
-  },
-  {
-    "id": "ropa-base-4",
-    "tipo": "ropa",
-    "nombre": "Sudadera de entrenamiento",
-    "marca": "NIKE",
-    "categoria": "HOODIES",
-    "descripcion": "Sudadera para calentamientos, traslados y uso diario.",
-    "detalles": "Capa versátil · Estilo deportivo",
-    "consejo": "Úsala antes y después de entrenar; verifica el tejido específico.",
-    "imagen": "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=85",
-    "etiqueta": "COLECCIÓN",
-    "referencia": true
-  },
-  {
-    "id": "ropa-base-5",
-    "tipo": "ropa",
-    "nombre": "Pantalón deportivo",
-    "marca": "ADIDAS",
-    "categoria": "PANTALONES",
-    "descripcion": "Pantalón deportivo para gimnasio y estilo casual.",
-    "detalles": "Ajuste cómodo · Uso versátil",
-    "consejo": "Comprueba largo, cintura y movilidad en la ficha del fabricante.",
-    "imagen": "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=85",
-    "etiqueta": "COLECCIÓN",
-    "referencia": true
-  },
-  {
-    "id": "ropa-base-6",
-    "tipo": "ropa",
-    "nombre": "Top deportivo sin costuras",
-    "marca": "GYMSHARK",
-    "categoria": "MUJER",
-    "descripcion": "Top deportivo pensado para acompañar el movimiento.",
-    "detalles": "Diseño deportivo · Sujeción variable",
-    "consejo": "La sujeción depende del modelo real; verifica tallaje y nivel de soporte.",
-    "imagen": "https://images.unsplash.com/photo-1549060279-7e168fcee0c2?auto=format&fit=crop&w=900&q=85",
-    "etiqueta": "COLECCIÓN",
-    "referencia": true
-  },
-  {
-    "id": "ropa-base-7",
-    "tipo": "ropa",
-    "nombre": "Camiseta deportiva básica",
-    "marca": "YoungLA",
-    "categoria": "CAMISETAS",
-    "descripcion": "Camiseta ligera de estilo fitness para el día a día.",
-    "detalles": "Silueta atlética · Uso cotidiano",
-    "consejo": "Combina con un pantalón de entrenamiento o prendas urbanas.",
-    "imagen": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=85",
-    "etiqueta": "COLECCIÓN",
-    "referencia": true
-  },
-  {
-    "id": "ropa-base-8",
-    "tipo": "ropa",
-    "nombre": "Pantaloneta de entrenamiento",
-    "marca": "NIKE",
-    "categoria": "PANTALONES",
-    "descripcion": "Shorts para rutinas de gimnasio y movilidad.",
-    "detalles": "Formato corto · Versatilidad",
-    "consejo": "Revisa largo, bolsillos y composición del modelo real.",
-    "imagen": "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=900&q=85",
-    "etiqueta": "COLECCIÓN",
-    "referencia": true
-  },
-  {
-    "id": "ropa-base-9",
-    "tipo": "ropa",
-    "nombre": "Camiseta de manga larga",
-    "marca": "UNDER ARMOUR",
-    "categoria": "MUJER",
-    "descripcion": "Prenda de manga larga para entrenamiento y capas ligeras.",
-    "detalles": "Cobertura extra · Estilo deportivo",
-    "consejo": "Adecuada para calentamiento o espacios frescos.",
-    "imagen": "https://images.unsplash.com/photo-1549060279-7e168fcee0c2?auto=format&fit=crop&w=900&q=85",
-    "etiqueta": "COLECCIÓN",
-    "referencia": true
-  },
-  {
-    "id": "ropa-base-10",
-    "tipo": "ropa",
-    "nombre": "Sudadera con cierre",
-    "marca": "ADIDAS",
-    "categoria": "HOODIES",
-    "descripcion": "Sudadera con cierre para transiciones dentro y fuera del gimnasio.",
-    "detalles": "Cierre frontal · Capa práctica",
-    "consejo": "Comprueba las medidas y el grosor del tejido antes de comprar.",
-    "imagen": "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=85",
-    "etiqueta": "COLECCIÓN",
-    "referencia": true
-  },
-  {
-    "id": "suplementos-base-1",
-    "tipo": "suplementos",
-    "nombre": "Proteína de suero",
-    "marca": "NUTRITION",
-    "categoria": "PROTEÍNA",
-    "descripcion": "Proteína de suero en polvo como complemento de la alimentación.",
-    "detalles": "Suplemento proteico · Uso según necesidades",
-    "consejo": "Verifica porciones, ingredientes y alérgenos en la etiqueta real.",
-    "imagen": "https://images.unsplash.com/photo-1593095948071-474c5cc2989d?auto=format&fit=crop&w=900&q=85",
-    "etiqueta": "COLECCIÓN",
-    "referencia": true
-  },
-  {
-    "id": "suplementos-base-2",
-    "tipo": "suplementos",
-    "nombre": "Creatina monohidratada",
-    "marca": "SPORTS LAB",
-    "categoria": "CREATINA",
-    "descripcion": "Creatina monohidratada, ingrediente común en nutrición deportiva.",
-    "detalles": "Creatina · Consulta el etiquetado",
-    "consejo": "No asumir concentración ni dosis sin conocer el producto exacto.",
-    "imagen": "https://images.unsplash.com/photo-1579722821273-0f6c7d44362f?auto=format&fit=crop&w=900&q=85",
-    "etiqueta": "COLECCIÓN",
-    "referencia": true
-  },
-  {
-    "id": "suplementos-base-3",
-    "tipo": "suplementos",
-    "nombre": "Fórmula preentrenamiento",
-    "marca": "PERFORMANCE",
-    "categoria": "PRE-ENTRENO",
-    "descripcion": "Mezcla preentrenamiento cuya composición depende de cada marca.",
-    "detalles": "Fórmula variable · Revisar estimulantes",
-    "consejo": "Consulta cafeína, advertencias y dosis declarada antes del uso.",
-    "imagen": "https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?auto=format&fit=crop&w=900&q=85",
-    "etiqueta": "COLECCIÓN",
-    "referencia": true
-  },
-  {
-    "id": "suplementos-base-4",
-    "tipo": "suplementos",
-    "nombre": "Vitaminas diarias",
-    "marca": "NUTRITION",
-    "categoria": "VITAMINAS",
-    "descripcion": "Complemento multivitamínico orientado a cubrir necesidades específicas.",
-    "detalles": "Vitaminas · Composición variable",
-    "consejo": "Contrasta las cantidades y posibles interacciones con la etiqueta.",
-    "imagen": "https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?auto=format&fit=crop&w=900&q=85",
-    "etiqueta": "COLECCIÓN",
-    "referencia": true
-  },
-  {
-    "id": "suplementos-base-5",
-    "tipo": "suplementos",
-    "nombre": "Mezcla de proteína vegetal",
-    "marca": "NUTRITION",
-    "categoria": "PROTEÍNA",
-    "descripcion": "Mezcla de proteína vegetal como alternativa a la proteína láctea.",
-    "detalles": "Origen vegetal · Fórmula variable",
-    "consejo": "Confirma fuentes vegetales y alérgenos; el perfil varía según marca.",
-    "imagen": "https://images.unsplash.com/photo-1593095948071-474c5cc2989d?auto=format&fit=crop&w=900&q=85",
-    "etiqueta": "COLECCIÓN",
-    "referencia": true
-  },
-  {
-    "id": "suplementos-base-6",
-    "tipo": "suplementos",
-    "nombre": "Creatina pura",
-    "marca": "SPORTS LAB",
-    "categoria": "CREATINA",
-    "descripcion": "Otra presentación referencial de creatina para el catálogo.",
-    "detalles": "Creatina · Presentación no verificada",
-    "consejo": "Compara pureza y cantidad indicada en el envase real.",
-    "imagen": "https://images.unsplash.com/photo-1579722821273-0f6c7d44362f?auto=format&fit=crop&w=900&q=85",
-    "etiqueta": "COLECCIÓN",
-    "referencia": true
-  },
-  {
-    "id": "suplementos-base-7",
-    "tipo": "suplementos",
-    "nombre": "Preentrenamiento energético",
-    "marca": "PERFORMANCE",
-    "categoria": "PRE-ENTRENO",
-    "descripcion": "Preentrenamiento orientado a sesiones exigentes; fórmula no especificada.",
-    "detalles": "Energía · Ingredientes por confirmar",
-    "consejo": "Evita asumir que es libre de cafeína; revisa tolerancia y etiquetado.",
-    "imagen": "https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?auto=format&fit=crop&w=900&q=85",
-    "etiqueta": "COLECCIÓN",
-    "referencia": true
-  },
-  {
-    "id": "suplementos-base-8",
-    "tipo": "suplementos",
-    "nombre": "Multivitamínico diario",
-    "marca": "NUTRITION",
-    "categoria": "VITAMINAS",
-    "descripcion": "Suplemento diario referencial de micronutrientes.",
-    "detalles": "Micronutrientes · Fórmula no verificada",
-    "consejo": "La necesidad de suplementación depende de la dieta y el contexto personal.",
-    "imagen": "https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?auto=format&fit=crop&w=900&q=85",
-    "etiqueta": "COLECCIÓN",
-    "referencia": true
-  },
-  {
-    "id": "accesorios-base-1",
-    "tipo": "accesorios",
-    "nombre": "Mezclador deportivo",
-    "marca": "HEADS FIT",
-    "categoria": "HIDRATACIÓN",
-    "descripcion": "Vaso mezclador para bebidas en polvo y agua.",
-    "detalles": "Mezcla portátil · Uso cotidiano",
-    "consejo": "Busca tapa segura y facilidad de limpieza.",
-    "imagen": "https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=900&q=85",
-    "etiqueta": "COLECCIÓN",
-    "referencia": true
-  },
-  {
-    "id": "accesorios-base-2",
-    "tipo": "accesorios",
-    "nombre": "Correas de levantamiento",
-    "marca": "FIT GEAR",
-    "categoria": "FUERZA",
-    "descripcion": "Correas de agarre para determinados ejercicios de tracción.",
-    "detalles": "Agarre asistido · Fuerza",
-    "consejo": "Aprende a colocarlas correctamente; no sustituyen la técnica.",
-    "imagen": "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=900&q=85",
-    "etiqueta": "COLECCIÓN",
-    "referencia": true
-  },
-  {
-    "id": "accesorios-base-3",
-    "tipo": "accesorios",
-    "nombre": "Bolso de gimnasio",
-    "marca": "NIKE",
-    "categoria": "BOLSOS",
-    "descripcion": "Bolso deportivo para transportar ropa y accesorios.",
-    "detalles": "Almacenamiento · Transporte",
-    "consejo": "Compara capacidad, compartimentos y resistencia del material.",
-    "imagen": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=85",
-    "etiqueta": "COLECCIÓN",
-    "referencia": true
-  },
-  {
-    "id": "accesorios-base-4",
-    "tipo": "accesorios",
-    "nombre": "Guantes de entrenamiento",
-    "marca": "UNDER ARMOUR",
-    "categoria": "PROTECCIÓN",
-    "descripcion": "Guantes de gimnasio para contacto con barras y mancuernas.",
-    "detalles": "Agarre · Protección de palma",
-    "consejo": "Verifica el ajuste y cómo se sienten al sostener la barra.",
-    "imagen": "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=900&q=85",
-    "etiqueta": "COLECCIÓN",
-    "referencia": true
-  },
-  {
-    "id": "accesorios-base-5",
-    "tipo": "accesorios",
-    "nombre": "Botella deportiva",
-    "marca": "HEADS FIT",
-    "categoria": "HIDRATACIÓN",
-    "descripcion": "Botella reutilizable para hidratación durante la jornada.",
-    "detalles": "Hidratación · Uso diario",
-    "consejo": "Revisa capacidad, materiales y método de lavado.",
-    "imagen": "https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=900&q=85",
-    "etiqueta": "COLECCIÓN",
-    "referencia": true
-  },
-  {
-    "id": "accesorios-base-6",
-    "tipo": "accesorios",
-    "nombre": "Vendas de muñeca",
-    "marca": "FIT GEAR",
-    "categoria": "FUERZA",
-    "descripcion": "Muñequeras de soporte utilizadas en ciertos levantamientos.",
-    "detalles": "Soporte de muñeca · Fuerza",
-    "consejo": "Ajusta sin cortar la circulación; no reemplaza una técnica adecuada.",
-    "imagen": "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=900&q=85",
-    "etiqueta": "COLECCIÓN",
-    "referencia": true
-  },
-  {
-    "id": "accesorios-base-7",
-    "tipo": "accesorios",
-    "nombre": "Mochila de entrenamiento",
-    "marca": "NIKE",
-    "categoria": "BOLSOS",
-    "descripcion": "Mochila para llevar prendas y equipamiento deportivo.",
-    "detalles": "Organización · Transporte",
-    "consejo": "Evalúa capacidad y comodidad de las correas.",
-    "imagen": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=85",
-    "etiqueta": "COLECCIÓN",
-    "referencia": true
-  },
-  {
-    "id": "accesorios-base-8",
-    "tipo": "accesorios",
-    "nombre": "Guantes con soporte de muñeca",
-    "marca": "UNDER ARMOUR",
-    "categoria": "PROTECCIÓN",
-    "descripcion": "Guantes deportivos con soporte de muñeca, según modelo.",
-    "detalles": "Guantes · Soporte variable",
-    "consejo": "Confirma el tipo de cierre y el soporte que declara el fabricante.",
-    "imagen": "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=900&q=85",
-    "etiqueta": "COLECCIÓN",
-    "referencia": true
-  },
-  {
-    "id": "curado-1",
+    "id": "gs-crest-black",
     "tipo": "ropa",
     "marca": "GYMSHARK",
+    "nombre": "Camiseta Crest negra",
     "categoria": "CAMISETAS",
-    "nombre": "Camiseta Gymshark Crest negra",
-    "descripcion": "Camiseta deportiva de la línea Crest. Consulta las tallas y el color disponibles.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Confirma la presentación y las características reales antes de comprar.",
-    "imagen": "https://cdn.shopify.com/s/files/1/1367/5209/files/images-CrestT_ShirtBlackA1A3J_BBBB_0989_0461.jpg?v=1753104162",
-    "etiqueta": "FOTO OFICIAL",
-    "referencia": false,
+    "imagen": "https://cdn.shopify.com/s/files/1/1693/6215/files/images-CrestT_ShirtBlackA1A3J_BBBB_1007_0465.jpg?v=1753104160",
     "fuente": "https://www.gymshark.com/products/gymshark-crest-t-shirt-black-aw21",
-    "colores": [
-      "Negro",
-      "Blanco",
-      "Azul tormenta",
-      "Por confirmar"
-    ]
+    "variantes": [
+      {
+        "nombre": "Negro",
+        "hex": "#161616",
+        "imagen": "https://cdn.shopify.com/s/files/1/1693/6215/files/images-CrestT_ShirtBlackA1A3J_BBBB_1007_0465.jpg?v=1753104160"
+      }
+    ],
+    "tallas": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL",
+      "3XL"
+    ],
+    "ajuste": "Regular",
+    "material": "100 % algodón",
+    "descripcion": "Camiseta de corte regular con pequeño logotipo en el pecho.",
+    "uso": "Entrenamiento y descanso.",
+    "etiqueta": "SELECCIÓN VERIFICABLE"
   },
   {
-    "id": "curado-2",
+    "id": "gs-arrival-green",
     "tipo": "ropa",
     "marca": "GYMSHARK",
-    "categoria": "PANTALONETAS",
-    "nombre": "Pantaloneta Arrival 5",
-    "descripcion": "Pantaloneta deportiva Arrival de corte corto para entrenamientos.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Confirma la presentación y las características reales antes de comprar.",
-    "imagen": "https://cdn.shopify.com/s/files/1/0156/6146/files/images-Arrival5ShortsBlackA2A1M_BBBB_1826_A_Edit_1080x.jpg?v=1750084637",
-    "etiqueta": "NUEVA SELECCIÓN",
-    "referencia": false
-  },
-  {
-    "id": "curado-3",
-    "tipo": "ropa",
-    "marca": "GYMSHARK",
-    "categoria": "LEGGINGS",
-    "nombre": "Mallas deportivas sin costuras",
-    "descripcion": "Mallas deportivas de la colección sin costuras, sujetas a confirmación.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Confirma la presentación y las características reales antes de comprar.",
-    "imagen": "https://cdn.shopify.com/s/files/1/0156/6146/files/images-RivalSeamlessLeggingGSBlackB6B2M_BB2J_2499_V1_1080x.jpg?v=1774905129",
-    "etiqueta": "NUEVA SELECCIÓN",
-    "referencia": false
-  },
-  {
-    "id": "curado-4",
-    "tipo": "ropa",
-    "marca": "GYMSHARK",
+    "nombre": "Camiseta Arrival holgada verde",
     "categoria": "CAMISETAS",
-    "nombre": "Camiseta Gymshark Arrival holgada – verde",
-    "descripcion": "Camiseta deportiva ligera de la colección Arrival.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Confirma la presentación y las características reales antes de comprar.",
     "imagen": "https://cdn.shopify.com/s/files/1/0156/6146/files/images-ArrivalOversizedT_ShirtGSHazeGreenA6A4W_EDC3_0183_V2_828x.jpg?v=1769450549",
-    "etiqueta": "FOTO OFICIAL",
-    "referencia": false,
     "fuente": "https://www.gymshark.com/products/gymshark-arrival-oversized-t-shirt-ss-tops-green-ss26",
-    "colores": [
-      "Verde Haze",
-      "Por confirmar"
-    ]
+    "variantes": [
+      {
+        "nombre": "Verde Haze",
+        "hex": "#899e84",
+        "imagen": "https://cdn.shopify.com/s/files/1/0156/6146/files/images-ArrivalOversizedT_ShirtGSHazeGreenA6A4W_EDC3_0183_V2_828x.jpg?v=1769450549"
+      },
+      {
+        "nombre": "Azul Stealth",
+        "hex": "#607386",
+        "imagen": "https://cdn.shopify.com/s/files/1/0156/6146/files/images-ArrivalOversizedT_ShirtGSStealthBlueA6A4W_UD6S_0160_V2_750x.jpg?v=1769450550"
+      }
+    ],
+    "tallas": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL",
+      "3XL"
+    ],
+    "ajuste": "Holgado",
+    "material": "Tejido deportivo",
+    "descripcion": "Camiseta de entrenamiento de corte amplio.",
+    "uso": "Entrenamiento de fuerza y uso diario.",
+    "etiqueta": "SELECCIÓN VERIFICABLE"
   },
   {
-    "id": "curado-5",
+    "id": "gs-arrival-short",
     "tipo": "ropa",
     "marca": "GYMSHARK",
-    "categoria": "CAMISETAS",
-    "nombre": "Camiseta Gymshark Arrival holgada – azul",
-    "descripcion": "Camiseta con paneles de contraste de la colección Arrival.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Confirma la presentación y las características reales antes de comprar.",
-    "imagen": "https://cdn.shopify.com/s/files/1/0156/6146/files/images-ArrivalOversizedT_ShirtGSStealthBlueA6A4W_UD6S_0160_V2_750x.jpg?v=1769450550",
-    "etiqueta": "FOTO OFICIAL",
-    "referencia": false,
-    "fuente": "https://www.gymshark.com/products/gymshark-arrival-oversized-t-shirt-ss-tops-blue-ss26",
-    "colores": [
-      "Azul Stealth",
-      "Por confirmar"
-    ]
+    "nombre": "Pantaloneta Arrival 5” negra",
+    "categoria": "PANTALONETAS",
+    "imagen": "https://cdn.shopify.com/s/files/1/0156/6146/files/images-Arrival5ShortsBlackA2A1M_BBBB_1826_A_Edit_1080x.jpg?v=1750084637",
+    "fuente": "https://www.gymshark.com/collections/arrival",
+    "variantes": [
+      {
+        "nombre": "Negro",
+        "hex": "#111111",
+        "imagen": "https://cdn.shopify.com/s/files/1/0156/6146/files/images-Arrival5ShortsBlackA2A1M_BBBB_1826_A_Edit_1080x.jpg?v=1750084637"
+      }
+    ],
+    "tallas": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "ajuste": "Deportivo",
+    "material": "Tejido ligero",
+    "descripcion": "Pantaloneta corta para sesiones de entrenamiento.",
+    "uso": "Entrenamiento en gimnasio.",
+    "etiqueta": "SELECCIÓN VERIFICABLE"
   },
   {
-    "id": "curado-6",
+    "id": "gs-rival-legging",
     "tipo": "ropa",
     "marca": "GYMSHARK",
-    "categoria": "HOODIES",
-    "nombre": "Sudadera Crest holgada",
-    "descripcion": "Sudadera holgada de la línea Crest.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Confirma la presentación y las características reales antes de comprar.",
-    "imagen": "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=900&q=80",
-    "etiqueta": "NUEVA SELECCIÓN",
-    "referencia": true
+    "nombre": "Mallas Rival Seamless negras",
+    "categoria": "LEGGINGS",
+    "imagen": "https://cdn.shopify.com/s/files/1/0156/6146/files/images-RivalSeamlessLeggingGSBlackB6B2M_BB2J_2499_V1_1080x.jpg?v=1774905129",
+    "fuente": "https://www.gymshark.com/collections/leggings",
+    "variantes": [
+      {
+        "nombre": "Negro",
+        "hex": "#111111",
+        "imagen": "https://cdn.shopify.com/s/files/1/0156/6146/files/images-RivalSeamlessLeggingGSBlackB6B2M_BB2J_2499_V1_1080x.jpg?v=1774905129"
+      }
+    ],
+    "tallas": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "ajuste": "Ajustado",
+    "material": "Tejido elástico sin costuras",
+    "descripcion": "Mallas deportivas de ajuste ceñido.",
+    "uso": "Entrenamiento y movimiento.",
+    "etiqueta": "SELECCIÓN VERIFICABLE"
   },
   {
-    "id": "curado-7",
-    "tipo": "ropa",
-    "marca": "GYMSHARK",
-    "categoria": "PANTALONES",
-    "nombre": "Pantalón deportivo Crest",
-    "descripcion": "Pantalón cómodo con corte para entrenamiento y uso diario.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Confirma la presentación y las características reales antes de comprar.",
-    "imagen": "https://images.unsplash.com/photo-1552902865-b72c031ac5ea?auto=format&fit=crop&w=900&q=80",
-    "etiqueta": "EN CATÁLOGO",
-    "referencia": true
-  },
-  {
-    "id": "curado-8",
-    "tipo": "ropa",
-    "marca": "GYMSHARK",
-    "categoria": "CAMISETAS",
-    "nombre": "Camiseta Gymshark Power Washed negra",
-    "descripcion": "Camiseta de entrenamiento de la línea Train. Fotografía de referencia.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Confirma la presentación y las características reales antes de comprar.",
-    "imagen": "https://cdn.shopify.com/s/files/1/0156/6146/files/images-PowerSeasonalsT_ShirtGSBlackA2C9F_BB2J_0075_V2.jpg?v=1759337555",
-    "etiqueta": "FOTO OFICIAL",
-    "referencia": false,
-    "fuente": "https://www.gymshark.com/products/gymshark-power-washed-t-shirt-ss-tops-1",
-    "colores": [
-      "Negro",
-      "Por confirmar"
-    ]
-  },
-  {
-    "id": "curado-9",
+    "id": "yla-chaos",
     "tipo": "ropa",
     "marca": "YoungLA",
+    "nombre": "Camiseta Chaos 4185 negra",
     "categoria": "CAMISETAS",
-    "nombre": "Camiseta YoungLA Chaos 4185 negra",
-    "descripcion": "Camiseta YoungLA Chaos de estilo holgado, con diseño gráfico y acabados desgastados.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Confirma la presentación y las características reales antes de comprar.",
-    "imagen": "https://www.youngla.com/cdn/shop/files/Jerdani_ChaosTees-22.jpg?v=1726248936&width=3200",
-    "etiqueta": "FOTO OFICIAL",
-    "referencia": false,
+    "imagen": "https://www.youngla.com/cdn/shop/files/Jerdani_ChaosTees-22.jpg?v=1726248936&width=1200",
     "fuente": "https://www.youngla.com/products/4185",
-    "colores": [
-      "Negro lavado",
-      "Verde bosque lavado",
-      "Morado lavado",
-      "Blanco",
-      "Por confirmar"
-    ]
+    "variantes": [
+      {
+        "nombre": "Negro lavado",
+        "hex": "#2c3032",
+        "imagen": "https://www.youngla.com/cdn/shop/files/Jerdani_ChaosTees-22.jpg?v=1726248936&width=1200"
+      }
+    ],
+    "tallas": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "ajuste": "Holgado, largo corto",
+    "material": "70 % algodón, 30 % poliéster",
+    "descripcion": "Camiseta de acabado lavado y diseño gráfico distintivo.",
+    "uso": "Uso urbano y deportivo.",
+    "etiqueta": "SELECCIÓN VERIFICABLE"
   },
   {
-    "id": "curado-10",
+    "id": "yla-3039",
     "tipo": "ropa",
     "marca": "YoungLA",
+    "nombre": "Camiseta sin mangas 3039 blanca",
     "categoria": "CAMISETAS",
-    "nombre": "Camiseta sin mangas 3039",
-    "descripcion": "Camiseta sin mangas para entrenamiento de fuerza.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Confirma la presentación y las características reales antes de comprar.",
     "imagen": "https://cdn.shopify.com/s/files/1/1775/6429/files/3039_white_001_09_24_johnny_ecomm_a07bf3e9-ddc9-4aa6-a30c-6229e608f062.jpg?v=1790385752&width=1000",
-    "etiqueta": "FOTO DEL MODELO",
-    "referencia": false,
-    "colores": [
-      "Blanco",
-      "Por confirmar"
-    ]
+    "fuente": "https://www.youngla.com/collections/tank-tops",
+    "variantes": [
+      {
+        "nombre": "Blanco",
+        "hex": "#e3e4e0",
+        "imagen": "https://cdn.shopify.com/s/files/1/1775/6429/files/3039_white_001_09_24_johnny_ecomm_a07bf3e9-ddc9-4aa6-a30c-6229e608f062.jpg?v=1790385752&width=1000"
+      }
+    ],
+    "tallas": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "ajuste": "Sin mangas",
+    "material": "Composición según etiqueta",
+    "descripcion": "Diseño sin mangas que permite moverse con libertad.",
+    "uso": "Entrenamiento de fuerza.",
+    "etiqueta": "SELECCIÓN VERIFICABLE"
   },
   {
-    "id": "curado-11",
+    "id": "yla-2179",
     "tipo": "ropa",
     "marca": "YoungLA",
+    "nombre": "Pantalón 2179 negro lavado",
     "categoria": "PANTALONES",
-    "nombre": "Pantalón deportivo 2179",
-    "descripcion": "Pantalón de estilo relajado, con estética deportiva.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Confirma la presentación y las características reales antes de comprar.",
     "imagen": "https://cdn.shopify.com/s/files/1/1775/6429/files/2179_black-wash_002_10_27_rudy_ecomm.jpg?v=1791667413&width=1000",
-    "etiqueta": "FOTO OFICIAL",
-    "referencia": false,
     "fuente": "https://www.youngla.com/products/2179",
-    "colores": [
-      "Negro lavado",
-      "Gris jaspeado",
-      "Malva lavado",
-      "Azul marino lavado",
-      "Por confirmar"
-    ]
+    "variantes": [
+      {
+        "nombre": "Negro lavado",
+        "hex": "#292c2c",
+        "imagen": "https://cdn.shopify.com/s/files/1/1775/6429/files/2179_black-wash_002_10_27_rudy_ecomm.jpg?v=1791667413&width=1000"
+      }
+    ],
+    "tallas": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "ajuste": "Holgado",
+    "material": "Composición según etiqueta",
+    "descripcion": "Pantalón de corte amplio y estética deportiva.",
+    "uso": "Entrenamiento y estilo urbano.",
+    "etiqueta": "SELECCIÓN VERIFICABLE"
   },
   {
-    "id": "curado-12",
+    "id": "yla-4031",
     "tipo": "ropa",
     "marca": "YoungLA",
+    "nombre": "Camiseta Simple 4031 morada",
     "categoria": "CAMISETAS",
-    "nombre": "Camiseta YoungLA Simple 4031 morada",
-    "descripcion": "Camiseta YoungLA 4031 de corte holgado con pequeño diseño frontal.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Confirma la presentación y las características reales antes de comprar.",
-    "imagen": "https://eu.youngla.com/cdn/shop/files/4031_purple-wash_001-alt_11_26_floor.jpg?v=1729810038&width=2400",
-    "etiqueta": "FOTO OFICIAL",
-    "referencia": false,
+    "imagen": "https://eu.youngla.com/cdn/shop/files/4031_purple-wash_001-alt_11_26_floor.jpg?v=1729810038&width=1200",
     "fuente": "https://eu.youngla.com/products/4031",
-    "colores": [
-      "Morado lavado",
-      "Por confirmar"
-    ]
+    "variantes": [
+      {
+        "nombre": "Morado lavado",
+        "hex": "#6f607b",
+        "imagen": "https://eu.youngla.com/cdn/shop/files/4031_purple-wash_001-alt_11_26_floor.jpg?v=1729810038&width=1200"
+      }
+    ],
+    "tallas": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "ajuste": "Holgado",
+    "material": "Composición según etiqueta",
+    "descripcion": "Camiseta de acabado lavado con pequeño diseño frontal.",
+    "uso": "Uso urbano y entrenamiento.",
+    "etiqueta": "SELECCIÓN VERIFICABLE"
   },
   {
-    "id": "curado-13",
-    "tipo": "ropa",
-    "marca": "YoungLA",
-    "categoria": "CAMISETAS",
-    "nombre": "Camiseta sin mangas YoungLA 3039 blanca",
-    "descripcion": "Camiseta sin mangas enfocada en ejercicios de fuerza. Fotografía ilustrativa.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Confirma la presentación y las características reales antes de comprar.",
-    "imagen": "https://cdn.shopify.com/s/files/1/1775/6429/files/3039_white_001_09_24_johnny_ecomm_a07bf3e9-ddc9-4aa6-a30c-6229e608f062.jpg?v=1790385752&width=1000",
-    "etiqueta": "FOTO DEL MODELO",
-    "referencia": false,
-    "colores": [
-      "Blanco",
-      "Por confirmar"
-    ]
-  },
-  {
-    "id": "curado-14",
-    "tipo": "ropa",
-    "marca": "YoungLA",
-    "categoria": "PANTALONES",
-    "nombre": "Pantalón holgado Classic Baggy 2111",
-    "descripcion": "Pantalón holgado para entrenar o vestir informal. Fotografía ilustrativa.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Confirma la presentación y las características reales antes de comprar.",
-    "imagen": "https://cdn.shopify.com/s/files/1/1775/6429/files/2179_black-wash_002_10_27_rudy_ecomm.jpg?v=1791667413&width=1000",
-    "etiqueta": "EN CATÁLOGO",
-    "referencia": false
-  },
-  {
-    "id": "curado-15",
-    "tipo": "ropa",
-    "marca": "YoungLA",
-    "categoria": "PANTALONES",
-    "nombre": "Pantalón cómodo Core Baggy 2129",
-    "descripcion": "Diseño holgado de estilo deportivo y urbano.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Confirma la presentación y las características reales antes de comprar.",
-    "imagen": "https://images.unsplash.com/photo-1552902865-b72c031ac5ea?auto=format&fit=crop&w=900&q=80",
-    "etiqueta": "EN CATÁLOGO",
-    "referencia": true
-  },
-  {
-    "id": "curado-16",
-    "tipo": "ropa",
-    "marca": "YoungLA",
-    "categoria": "CAMISETAS",
-    "nombre": "Camiseta de compresión Warrior 4041",
-    "descripcion": "Prenda deportiva de ajuste ceñido. Fotografía ilustrativa.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Confirma la presentación y las características reales antes de comprar.",
-    "imagen": "https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=900&q=80",
-    "etiqueta": "EN CATÁLOGO",
-    "referencia": true
-  },
-  {
-    "id": "curado-17",
+    "id": "nike-pro",
     "tipo": "ropa",
     "marca": "NIKE",
-    "categoria": "CAMISETAS",
     "nombre": "Camiseta de compresión Nike Pro Dri-FIT",
-    "descripcion": "Camiseta ajustada de Nike Pro para entrenamiento.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Confirma la presentación y las características reales antes de comprar.",
+    "categoria": "CAMISETAS",
     "imagen": "https://static.nike.com/a/images/f_auto/8969ebf5-6767-47a1-9a2e-549e12ddcb8e/M%2BNP%2BDF%2BTIGHT%2BTOP%2BSS.png",
-    "etiqueta": "EN CATÁLOGO",
-    "referencia": false
+    "fuente": "https://www.nike.com/sg/t/pro-dri-fit-mens-tight-fit-short-sleeve-top-wkRT07",
+    "variantes": [
+      {
+        "nombre": "Negro",
+        "hex": "#171717",
+        "imagen": "https://static.nike.com/a/images/f_auto/8969ebf5-6767-47a1-9a2e-549e12ddcb8e/M%2BNP%2BDF%2BTIGHT%2BTOP%2BSS.png"
+      }
+    ],
+    "tallas": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "ajuste": "Compresión",
+    "material": "Poliéster y elastano",
+    "descripcion": "Prenda ajustada de entrenamiento con tecnología Dri-FIT.",
+    "uso": "Ejercicios de fuerza y entrenamiento.",
+    "etiqueta": "SELECCIÓN VERIFICABLE"
   },
   {
-    "id": "curado-18",
-    "tipo": "ropa",
-    "marca": "NIKE",
-    "categoria": "PANTALONETAS",
-    "nombre": "Pantaloneta Nike Unlimited Dri-FIT",
-    "descripcion": "Pantaloneta versátil de entrenamiento. Fotografía ilustrativa.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Confirma la presentación y las características reales antes de comprar.",
-    "imagen": "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=900&q=80",
-    "etiqueta": "EN CATÁLOGO",
-    "referencia": true
-  },
-  {
-    "id": "curado-19",
-    "tipo": "ropa",
-    "marca": "NIKE",
-    "categoria": "CAMISETAS",
-    "nombre": "Camiseta Nike Primary Dri-FIT",
-    "descripcion": "Camiseta deportiva de uso versátil. Fotografía ilustrativa.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Confirma la presentación y las características reales antes de comprar.",
-    "imagen": "https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=900&q=80",
-    "etiqueta": "EN CATÁLOGO",
-    "referencia": true
-  },
-  {
-    "id": "curado-20",
-    "tipo": "ropa",
-    "marca": "NIKE",
-    "categoria": "MUJER",
-    "nombre": "Mallas deportivas Nike Pro",
-    "descripcion": "Mallas para entrenamiento. Fotografía ilustrativa.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Confirma la presentación y las características reales antes de comprar.",
-    "imagen": "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=900&q=80",
-    "etiqueta": "EN CATÁLOGO",
-    "referencia": true
-  },
-  {
-    "id": "curado-21",
-    "tipo": "ropa",
-    "marca": "NIKE",
-    "categoria": "HOODIES",
-    "nombre": "Sudadera deportiva Nike",
-    "descripcion": "Sudadera de entrenamiento para uso cotidiano. Fotografía ilustrativa.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Confirma la presentación y las características reales antes de comprar.",
-    "imagen": "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=900&q=80",
-    "etiqueta": "EN CATÁLOGO",
-    "referencia": true
-  },
-  {
-    "id": "curado-22",
+    "id": "adidas-shorts",
     "tipo": "ropa",
     "marca": "ADIDAS",
+    "nombre": "Pantaloneta Designed for Training beige",
     "categoria": "PANTALONETAS",
-    "nombre": "Pantaloneta Designed for Training",
-    "descripcion": "Pantaloneta de entrenamiento de la colección Designed for Training.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Confirma la presentación y las características reales antes de comprar.",
     "imagen": "https://assets.adidas.com/images/h_2000%2Cf_auto%2Cq_auto%2Cfl_lossy%2Cc_fill%2Cg_auto/81bb9cc21766458f9d162824356026eb_9366/Designed_for_Training_Workout_Shorts_Beige_KA7283_21_model.jpg",
-    "etiqueta": "EN CATÁLOGO",
-    "referencia": false
+    "fuente": "https://www.adidas.com/us/training",
+    "variantes": [
+      {
+        "nombre": "Beige",
+        "hex": "#c2b29b",
+        "imagen": "https://assets.adidas.com/images/h_2000%2Cf_auto%2Cq_auto%2Cfl_lossy%2Cc_fill%2Cg_auto/81bb9cc21766458f9d162824356026eb_9366/Designed_for_Training_Workout_Shorts_Beige_KA7283_21_model.jpg"
+      }
+    ],
+    "tallas": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "ajuste": "Deportivo",
+    "material": "Consultar ficha oficial",
+    "descripcion": "Pantaloneta deportiva de la línea Designed for Training.",
+    "uso": "Gimnasio y entrenamiento.",
+    "etiqueta": "SELECCIÓN VERIFICABLE"
   },
   {
-    "id": "curado-23",
-    "tipo": "ropa",
-    "marca": "ADIDAS",
-    "categoria": "CAMISETAS",
-    "nombre": "Camiseta adidas Train Essentials",
-    "descripcion": "Camiseta ligera para entrenar. Fotografía ilustrativa.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Confirma la presentación y las características reales antes de comprar.",
-    "imagen": "https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=900&q=80",
-    "etiqueta": "EN CATÁLOGO",
-    "referencia": true
-  },
-  {
-    "id": "curado-24",
-    "tipo": "ropa",
-    "marca": "ADIDAS",
-    "categoria": "PANTALONES",
-    "nombre": "Pantalón deportivo adidas Tiro",
-    "descripcion": "Pantalón deportivo de inspiración futbolística. Fotografía ilustrativa.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Confirma la presentación y las características reales antes de comprar.",
-    "imagen": "https://images.unsplash.com/photo-1552902865-b72c031ac5ea?auto=format&fit=crop&w=900&q=80",
-    "etiqueta": "EN CATÁLOGO",
-    "referencia": true
-  },
-  {
-    "id": "curado-25",
-    "tipo": "ropa",
-    "marca": "ADIDAS",
-    "categoria": "MUJER",
-    "nombre": "Mallas adidas Optime",
-    "descripcion": "Mallas para actividades deportivas. Fotografía ilustrativa.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Confirma la presentación y las características reales antes de comprar.",
-    "imagen": "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=900&q=80",
-    "etiqueta": "EN CATÁLOGO",
-    "referencia": true
-  },
-  {
-    "id": "curado-26",
-    "tipo": "ropa",
-    "marca": "ADIDAS",
-    "categoria": "HOODIES",
-    "nombre": "Sudadera adidas Essentials",
-    "descripcion": "Sudadera de entrenamiento para uso diario. Fotografía ilustrativa.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Confirma la presentación y las características reales antes de comprar.",
-    "imagen": "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=900&q=80",
-    "etiqueta": "EN CATÁLOGO",
-    "referencia": true
-  },
-  {
-    "id": "curado-27",
+    "id": "on-whey",
     "tipo": "suplementos",
     "marca": "OPTIMUM NUTRITION",
+    "nombre": "Gold Standard 100 % Whey – chocolate",
     "categoria": "PROTEÍNA",
-    "nombre": "Gold Standard 100% Whey",
-    "descripcion": "Proteína de suero de la línea Gold Standard. Presentación y sabores por confirmar.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Consulta el etiquetado, los ingredientes, las advertencias y los alérgenos antes de utilizarlo.",
-    "imagen": "https://supplementco.com.au/cdn/shop/files/IMG_5489.jpg?v=1764125932&width=1920",
-    "etiqueta": "EN CATÁLOGO",
-    "referencia": false
+    "imagen": "https://supps247.com.au/cdn/shop/files/Gold_Standard_Whey_by_Optimum_Nutrition_at_Supps247_Double_Rich_Chocolate_1.jpg?v=1735365839&width=1200",
+    "fuente": "https://www.optimumnutrition.com/en-us/products/gold-standard-100-whey-protein-powder",
+    "variantes": [
+      {
+        "nombre": "Chocolate intenso",
+        "hex": "#d0ccbb",
+        "imagen": "https://supps247.com.au/cdn/shop/files/Gold_Standard_Whey_by_Optimum_Nutrition_at_Supps247_Double_Rich_Chocolate_1.jpg?v=1735365839&width=1200"
+      }
+    ],
+    "tallas": [
+      "2 lb / consultar",
+      "5 lb / consultar"
+    ],
+    "ajuste": "",
+    "material": "",
+    "descripcion": "Proteína de suero en polvo. La fotografía corresponde al sabor Chocolate Intenso.",
+    "uso": "Revisar ingredientes, alérgenos y etiqueta del envase antes de usar.",
+    "etiqueta": "NUTRICIÓN"
   },
   {
-    "id": "curado-28",
+    "id": "on-creatine",
     "tipo": "suplementos",
     "marca": "OPTIMUM NUTRITION",
+    "nombre": "Creatina micronizada – sin sabor",
     "categoria": "CREATINA",
-    "nombre": "Creatina micronizada",
-    "descripcion": "Creatina monohidratada; verificar composición y etiquetado del envase.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Consulta el etiquetado, los ingredientes, las advertencias y los alérgenos antes de utilizarlo.",
-    "imagen": "https://images.unsplash.com/photo-1579722821273-0f6c7d44362f?auto=format&fit=crop&w=900&q=80",
-    "etiqueta": "EN CATÁLOGO",
-    "referencia": true
+    "imagen": "https://i5.walmartimages.com/seo/Optimum-Nutrition-Micronized-Creatine-Powder-Unflavored-100-servings_f90447f3-b89a-4ceb-8882-a685a4e22e7c.432e00e80dd8aeb64b498d86badf48c2.jpeg",
+    "fuente": "https://www.optimumnutrition.com/en-us",
+    "variantes": [
+      {
+        "nombre": "Sin sabor",
+        "hex": "#d0ccbb",
+        "imagen": "https://i5.walmartimages.com/seo/Optimum-Nutrition-Micronized-Creatine-Powder-Unflavored-100-servings_f90447f3-b89a-4ceb-8882-a685a4e22e7c.432e00e80dd8aeb64b498d86badf48c2.jpeg"
+      }
+    ],
+    "tallas": [
+      "100 servicios / consultar"
+    ],
+    "ajuste": "",
+    "material": "",
+    "descripcion": "Creatina monohidratada en polvo con presentación ilustrada de 100 servicios.",
+    "uso": "Verifica la autenticidad y la etiqueta del producto.",
+    "etiqueta": "NUTRICIÓN"
   },
   {
-    "id": "curado-29",
-    "tipo": "suplementos",
-    "marca": "OPTIMUM NUTRITION",
-    "categoria": "PRE-ENTRENO",
-    "nombre": "Amino Energy",
-    "descripcion": "Fórmula de aminoácidos y energía. Verificar ingredientes y estimulantes.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Consulta el etiquetado, los ingredientes, las advertencias y los alérgenos antes de utilizarlo.",
-    "imagen": "https://images.unsplash.com/photo-1579722821273-0f6c7d44362f?auto=format&fit=crop&w=900&q=80",
-    "etiqueta": "EN CATÁLOGO",
-    "referencia": true
-  },
-  {
-    "id": "curado-30",
-    "tipo": "suplementos",
-    "marca": "MYPROTEIN",
-    "categoria": "PROTEÍNA",
-    "nombre": "Impact Whey Protein",
-    "descripcion": "Proteína de suero de la familia Impact, con sabores y presentaciones variables.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Consulta el etiquetado, los ingredientes, las advertencias y los alérgenos antes de utilizarlo.",
-    "imagen": "https://rimage.ripley.com.pe/home.ripley/Attachment/MKP/3373/PMP20000267560/full_image-1.jpeg",
-    "etiqueta": "EN CATÁLOGO",
-    "referencia": false
-  },
-  {
-    "id": "curado-31",
-    "tipo": "suplementos",
-    "marca": "MYPROTEIN",
-    "categoria": "CREATINA",
-    "nombre": "Creatina monohidratada Myprotein",
-    "descripcion": "Suplemento de creatina; confirma el envase disponible y la etiqueta.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Consulta el etiquetado, los ingredientes, las advertencias y los alérgenos antes de utilizarlo.",
-    "imagen": "https://images.unsplash.com/photo-1579722821273-0f6c7d44362f?auto=format&fit=crop&w=900&q=80",
-    "etiqueta": "EN CATÁLOGO",
-    "referencia": true
-  },
-  {
-    "id": "curado-32",
-    "tipo": "suplementos",
-    "marca": "MYPROTEIN",
-    "categoria": "PROTEÍNA",
-    "nombre": "Clear Whey Isolate",
-    "descripcion": "Bebida proteica de suero aislado, consultar presentación y sabores.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Consulta el etiquetado, los ingredientes, las advertencias y los alérgenos antes de utilizarlo.",
-    "imagen": "https://images.unsplash.com/photo-1593095948071-474c5cc2989d?auto=format&fit=crop&w=900&q=80",
-    "etiqueta": "EN CATÁLOGO",
-    "referencia": true
-  },
-  {
-    "id": "curado-33",
+    "id": "mt-nitrotech",
     "tipo": "suplementos",
     "marca": "MUSCLETECH",
+    "nombre": "Nitro-Tech Whey Protein – chocolate",
     "categoria": "PROTEÍNA",
-    "nombre": "Nitro-Tech Whey Protein",
-    "descripcion": "Proteína de suero de la línea Nitro-Tech. Fotografía de referencia.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Consulta el etiquetado, los ingredientes, las advertencias y los alérgenos antes de utilizarlo.",
-    "imagen": "https://images.unsplash.com/photo-1593095948071-474c5cc2989d?auto=format&fit=crop&w=900&q=80",
-    "etiqueta": "EN CATÁLOGO",
-    "referencia": true
+    "imagen": "https://www.muscletech.com/cdn/shop/files/muscletech-nitrotech-choc-2lb_2048x2048_408073e7-a7aa-4218-be41-89b9618e16ca_1440x1440.png?v=1725654223",
+    "fuente": "https://www.muscletech.com/",
+    "variantes": [
+      {
+        "nombre": "Chocolate con leche",
+        "hex": "#d0ccbb",
+        "imagen": "https://www.muscletech.com/cdn/shop/files/muscletech-nitrotech-choc-2lb_2048x2048_408073e7-a7aa-4218-be41-89b9618e16ca_1440x1440.png?v=1725654223"
+      }
+    ],
+    "tallas": [
+      "2.2 lb / consultar"
+    ],
+    "ajuste": "",
+    "material": "",
+    "descripcion": "Proteína de suero Nitro-Tech, presentación de chocolate con leche.",
+    "uso": "Verificar fórmula, alérgenos y contenido del envase.",
+    "etiqueta": "NUTRICIÓN"
   },
   {
-    "id": "curado-34",
-    "tipo": "suplementos",
-    "marca": "MUSCLETECH",
-    "categoria": "CREATINA",
-    "nombre": "Platinum 100% Creatine",
-    "descripcion": "Suplemento de creatina de la línea Platinum.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Consulta el etiquetado, los ingredientes, las advertencias y los alérgenos antes de utilizarlo.",
-    "imagen": "https://images.unsplash.com/photo-1579722821273-0f6c7d44362f?auto=format&fit=crop&w=900&q=80",
-    "etiqueta": "EN CATÁLOGO",
-    "referencia": true
-  },
-  {
-    "id": "curado-35",
-    "tipo": "suplementos",
-    "marca": "GHOST",
-    "categoria": "PROTEÍNA",
-    "nombre": "GHOST Whey",
-    "descripcion": "Proteína de suero; consulta sabores y disponibilidad.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Consulta el etiquetado, los ingredientes, las advertencias y los alérgenos antes de utilizarlo.",
-    "imagen": "https://images.unsplash.com/photo-1593095948071-474c5cc2989d?auto=format&fit=crop&w=900&q=80",
-    "etiqueta": "EN CATÁLOGO",
-    "referencia": true
-  },
-  {
-    "id": "curado-36",
-    "tipo": "suplementos",
-    "marca": "GHOST",
-    "categoria": "PRE-ENTRENO",
-    "nombre": "GHOST Legend",
-    "descripcion": "Producto preentrenamiento. Verificar cafeína y advertencias de la etiqueta.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Consulta el etiquetado, los ingredientes, las advertencias y los alérgenos antes de utilizarlo.",
-    "imagen": "https://images.unsplash.com/photo-1579722821273-0f6c7d44362f?auto=format&fit=crop&w=900&q=80",
-    "etiqueta": "EN CATÁLOGO",
-    "referencia": true
-  },
-  {
-    "id": "curado-37",
+    "id": "mp-impact",
     "tipo": "suplementos",
     "marca": "MYPROTEIN",
+    "nombre": "Impact Whey Protein – presentación clásica",
     "categoria": "PROTEÍNA",
-    "nombre": "Impact Whey Isolate",
-    "descripcion": "Proteína de suero aislada, con presentación por confirmar. Fotografía ilustrativa.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Consulta el etiquetado, los ingredientes, las advertencias y los alérgenos antes de utilizarlo.",
-    "imagen": "https://rimage.ripley.com.pe/home.ripley/Attachment/MKP/3373/PMP20000267560/full_image-1.jpeg",
-    "etiqueta": "EN CATÁLOGO",
-    "referencia": false
+    "imagen": "https://cdn-cms.f-static.com/uploads/1503687/normal_5c541b8cd549f.jpg",
+    "fuente": "https://www.myprotein.com/",
+    "variantes": [
+      {
+        "nombre": "Sabor por confirmar",
+        "hex": "#d0ccbb",
+        "imagen": "https://cdn-cms.f-static.com/uploads/1503687/normal_5c541b8cd549f.jpg"
+      }
+    ],
+    "tallas": [
+      "Tamaño por confirmar"
+    ],
+    "ajuste": "",
+    "material": "",
+    "descripcion": "Proteína de suero en bolsa blanca, empaque de diseño clásico. El sabor depende de la variante real.",
+    "uso": "Confirmar sabor, envase y composición antes de comprar.",
+    "etiqueta": "NUTRICIÓN"
   },
   {
-    "id": "curado-38",
-    "tipo": "suplementos",
-    "marca": "HEADS FIT",
-    "categoria": "HIDRATACIÓN",
-    "nombre": "Electrolitos para entrenamiento",
-    "descripcion": "Mezcla de hidratación deportiva; consultar composición disponible.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Consulta el etiquetado, los ingredientes, las advertencias y los alérgenos antes de utilizarlo.",
-    "imagen": "https://images.unsplash.com/photo-1523362628745-0c100150b504?auto=format&fit=crop&w=900&q=80",
-    "etiqueta": "EN CATÁLOGO",
-    "referencia": true
-  },
-  {
-    "id": "curado-39",
-    "tipo": "accesorios",
-    "marca": "NIKE",
-    "categoria": "BOLSOS",
-    "nombre": "Mochila deportiva Brasilia",
-    "descripcion": "Mochila para llevar ropa y accesorios al gimnasio. Fotografía ilustrativa.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Confirma la presentación y las características reales antes de comprar.",
-    "imagen": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=80",
-    "etiqueta": "EN CATÁLOGO",
-    "referencia": true
-  },
-  {
-    "id": "curado-40",
-    "tipo": "accesorios",
-    "marca": "NIKE",
-    "categoria": "PROTECCIÓN",
-    "nombre": "Guantes Nike de entrenamiento",
-    "descripcion": "Guantes de entrenamiento. Tallas y materiales por confirmar.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Confirma la presentación y las características reales antes de comprar.",
-    "imagen": "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=900&q=80",
-    "etiqueta": "EN CATÁLOGO",
-    "referencia": true
-  },
-  {
-    "id": "curado-41",
-    "tipo": "accesorios",
-    "marca": "ADIDAS",
-    "categoria": "BOLSOS",
-    "nombre": "Bolso deportivo adidas Essentials",
-    "descripcion": "Bolso de entrenamiento, tamaño y color por confirmar.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Confirma la presentación y las características reales antes de comprar.",
-    "imagen": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=80",
-    "etiqueta": "EN CATÁLOGO",
-    "referencia": true
-  },
-  {
-    "id": "curado-42",
-    "tipo": "accesorios",
-    "marca": "ADIDAS",
-    "categoria": "HIDRATACIÓN",
-    "nombre": "Botella deportiva adidas",
-    "descripcion": "Botella para entrenamientos, capacidad y material por confirmar.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Confirma la presentación y las características reales antes de comprar.",
-    "imagen": "https://images.unsplash.com/photo-1523362628745-0c100150b504?auto=format&fit=crop&w=900&q=80",
-    "etiqueta": "EN CATÁLOGO",
-    "referencia": true
-  },
-  {
-    "id": "curado-43",
+    "id": "gs-straps",
     "tipo": "accesorios",
     "marca": "GYMSHARK",
-    "categoria": "FUERZA",
     "nombre": "Correas de levantamiento Gymshark",
-    "descripcion": "Correas de agarre para entrenamientos con pesas.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Confirma la presentación y las características reales antes de comprar.",
-    "imagen": "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=900&q=80",
-    "etiqueta": "EN CATÁLOGO",
-    "referencia": true
-  },
-  {
-    "id": "curado-44",
-    "tipo": "accesorios",
-    "marca": "YoungLA",
-    "categoria": "HIDRATACIÓN",
-    "nombre": "Botella deportiva YoungLA Lah Jug",
-    "descripcion": "Botella de hidratación de la colección Lah Jug. Fotografía ilustrativa.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Confirma la presentación y las características reales antes de comprar.",
-    "imagen": "https://images.unsplash.com/photo-1523362628745-0c100150b504?auto=format&fit=crop&w=900&q=80",
-    "etiqueta": "EN CATÁLOGO",
-    "referencia": true
-  },
-  {
-    "id": "curado-45",
-    "tipo": "accesorios",
-    "marca": "HEADS FIT",
     "categoria": "FUERZA",
-    "nombre": "Bandas de resistencia",
-    "descripcion": "Accesorio para ejercicios de resistencia; consulta tamaños y resistencias.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Confirma la presentación y las características reales antes de comprar.",
-    "imagen": "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=900&q=80",
-    "etiqueta": "EN CATÁLOGO",
-    "referencia": true
+    "imagen": "https://cdn.shopify.com/s/files/1/0156/6146/files/images-SeatbeltLiftingStrapsGSBlackI1B7K_BB2J_0006_V1a.jpg?v=1762362625",
+    "fuente": "https://www.gymshark.com/products/gymshark-lifting-straps-equipment-black-aw25",
+    "variantes": [
+      {
+        "nombre": "Negro",
+        "hex": "#242424",
+        "imagen": "https://cdn.shopify.com/s/files/1/0156/6146/files/images-SeatbeltLiftingStrapsGSBlackI1B7K_BB2J_0006_V1a.jpg?v=1762362625"
+      }
+    ],
+    "tallas": [
+      "Par / único"
+    ],
+    "descripcion": "Correas de agarre para ejercicios con barra.",
+    "uso": "Se usan para asistir el agarre; no sustituyen la técnica.",
+    "etiqueta": "EQUIPAMIENTO"
   },
   {
-    "id": "curado-46",
+    "id": "nike-brasilia",
     "tipo": "accesorios",
-    "marca": "HEADS FIT",
-    "categoria": "PROTECCIÓN",
-    "nombre": "Rodilleras de entrenamiento",
-    "descripcion": "Accesorio deportivo de soporte. Tallas por confirmar.",
-    "detalles": "Consulta medidas, composición, color y disponibilidad antes de realizar un pedido.",
-    "consejo": "Confirma la presentación y las características reales antes de comprar.",
-    "imagen": "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=900&q=80",
-    "etiqueta": "EN CATÁLOGO",
-    "referencia": true
+    "marca": "NIKE",
+    "nombre": "Mochila Nike Brasilia 9.5 de 24 L",
+    "categoria": "BOLSOS",
+    "imagen": "https://nikeclprod.vtexassets.com/arquivos/ids/472912/DH7709_010_A.jpg?v=637915086061000000",
+    "fuente": "https://www.nike.com/t/brasilia-9-5-training-backpack-medium-24l-zz5tL7/DH7709-010",
+    "variantes": [
+      {
+        "nombre": "Negro",
+        "hex": "#242424",
+        "imagen": "https://nikeclprod.vtexassets.com/arquivos/ids/472912/DH7709_010_A.jpg?v=637915086061000000"
+      }
+    ],
+    "tallas": [
+      "24 L / consultar"
+    ],
+    "descripcion": "Mochila deportiva con compartimentos y bolsillo frontal.",
+    "uso": "Capacidad de referencia: 24 litros.",
+    "etiqueta": "EQUIPAMIENTO"
+  },
+  {
+    "id": "adidas-duffel",
+    "tipo": "accesorios",
+    "marca": "ADIDAS",
+    "nombre": "Bolso adidas Essentials Training mediano",
+    "categoria": "BOLSOS",
+    "imagen": "https://assets.adidas.com/images/w_600%2Cf_auto%2Cq_auto/7f16465080064a6bbd7baf5600a81159_9366/Essentials_Training_Duffel_Bag_Medium_Black_HT4747.jpg",
+    "fuente": "https://www.adidas.com.au/essentials-training-duffel-bag-medium/HT4747.html",
+    "variantes": [
+      {
+        "nombre": "Negro",
+        "hex": "#242424",
+        "imagen": "https://assets.adidas.com/images/w_600%2Cf_auto%2Cq_auto/7f16465080064a6bbd7baf5600a81159_9366/Essentials_Training_Duffel_Bag_Medium_Black_HT4747.jpg"
+      }
+    ],
+    "tallas": [
+      "Mediano / consultar"
+    ],
+    "descripcion": "Bolso deportivo de tamaño mediano con asas y bandolera.",
+    "uso": "Modelo HT4747; medidas exactas a confirmar.",
+    "etiqueta": "EQUIPAMIENTO"
+  },
+  {
+    "id": "on-shaker",
+    "tipo": "accesorios",
+    "marca": "OPTIMUM NUTRITION",
+    "nombre": "Mezclador Optimum Nutrition 28 oz",
+    "categoria": "HIDRATACIÓN",
+    "imagen": "https://www.optimumnutrition.com/cdn/shop/files/on-9138779_Image_01.png?v=1755795929&width=1200",
+    "fuente": "https://www.optimumnutrition.com/en-us/products/shaker-bottle",
+    "variantes": [
+      {
+        "nombre": "Negro",
+        "hex": "#242424",
+        "imagen": "https://www.optimumnutrition.com/cdn/shop/files/on-9138779_Image_01.png?v=1755795929&width=1200"
+      }
+    ],
+    "tallas": [
+      "28 oz / consultar"
+    ],
+    "descripcion": "Vaso mezclador con esfera de acero para batidos.",
+    "uso": "Capacidad de referencia: 28 oz.",
+    "etiqueta": "EQUIPAMIENTO"
   }
 ];
