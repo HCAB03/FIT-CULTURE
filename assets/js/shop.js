@@ -57,6 +57,7 @@ const chooser=makeDialog('hf-choose',
  '<div class="hf-sheet-group hf-sheet-qty-group"><div class="hf-sheet-label"><strong>CANTIDAD</strong></div><div class="hf-sheet-quantity"><button type="button" data-sheet-qty="-1" aria-label="Reducir cantidad">−</button><output class="hf-sheet-qty-value">1</output><button type="button" data-sheet-qty="1" aria-label="Aumentar cantidad">+</button></div></div>'+
  '</div>'+
  '<div class="hf-sheet-sticky"><button class="hf-confirm" type="button" disabled>ELIGE UNA TALLA PARA CONTINUAR</button><p class="hf-help" role="status">Confirmaremos las opciones y el precio por WhatsApp.</p></div>');
+chooser.setAttribute('aria-labelledby','hf-choose-title');
 let chosen={index:0,size:'',qty:1};
 const quick=makeDialog('hf-quick','<button type="button" class="hf-quick-close" aria-label="Cerrar detalle">×</button><div class="hf-quick-layout"><div class="hf-quick-image"></div><div class="hf-quick-body"><p class="hf-small hf-quick-brand"></p><h2 class="hf-quick-title"></h2><p class="hf-quick-desc"></p><div class="hf-quick-info"><span>DETALLES</span><p class="hf-quick-features"></p></div><div class="hf-quick-info"><span>IMPORTANTE</span><p class="hf-quick-advice"></p></div><button type="button" class="hf-quick-add">AÑADIR A MI BOLSA ↗</button><p class="hf-quick-notice">Catálogo orientativo: precios y existencias se confirman por WhatsApp. Las imágenes pueden ser ilustrativas.</p><a class="hf-original-source" target="_blank" rel="noopener noreferrer" hidden>VER REFERENCIA DEL PRODUCTO ↗</a></div></div>');
 let active=null;
