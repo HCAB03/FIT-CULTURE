@@ -398,3 +398,7 @@
  .hf-sheet-size{font-size:12px}
 }
 @media(prefers-reduced-motion:reduce){.hf-choose[open]{animation:none!important}.hf-sheet-size:hover{transform:none}}
+
+.hf-sheet-size{overflow-wrap:anywhere;line-height:1.25}
+.hf-sheet-swatch:hover{transform:translateY(-2px)}
+@media(prefers-reduced-motion:reduce){.hf-sheet-swatch:hover{transform:none}}
