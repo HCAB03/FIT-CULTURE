@@ -1,7 +1,7 @@
 /* HEADS FIT · catálogo V3 sin backend · pedido consultivo por WhatsApp */
 (() => {
 'use strict';
-const PHONE='593983551261', KEY='heads-fit-pedido-v1';
+const PHONE='593983551261', KEY='heads-fit-pedido-v2';
 const $=(s,root=document)=>root.querySelector(s), $$=(s,root=document)=>[...root.querySelectorAll(s)];
 const clean=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
 const safe=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -12,15 +12,11 @@ const query=new URLSearchParams(location.search);
 const catalogPages=['ropa.html','suplementos.html','accesorios.html','catalogo.html'];
 const isCatalog=catalogPages.includes(page);
 const catType=page==='catalogo.html'?'todos':page.replace('.html','');
-const fallback={
- ropa:'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=900&q=75',
- suplementos:'https://images.unsplash.com/photo-1593095948071-474c5cc2989d?auto=format&fit=crop&w=900&q=75',
- accesorios:'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=900&q=75'
-};
-function imgFail(e){const im=e.target;if(!im.matches('img[data-fallback]'))return;if(im.dataset.failed)return;im.dataset.failed='1';im.src=im.dataset.fallback||fallback.ropa;}
+const PLACEHOLDER='data:image/svg+xml;charset=utf-8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 750"><rect width="600" height="750" fill="#e4e7df"/><rect x="70" y="290" width="460" height="170" rx="10" fill="#d8ded1"/><text x="300" y="353" text-anchor="middle" font-family="Arial,sans-serif" font-size="23" font-weight="700" fill="#4d584a">IMAGEN NO DISPONIBLE</text><text x="300" y="391" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#6c7566">Consultar referencia oficial</text></svg>');
+function imgFail(e){const im=e.target;if(!im.matches('img[data-fallback]')||im.dataset.failed)return;im.dataset.failed='1';im.src=PLACEHOLDER;im.alt='Imagen de producto temporalmente no disponible';}
 document.addEventListener('error',imgFail,true);
 
-const brandNames=['GYMSHARK','YoungLA','NIKE','ADIDAS','UNDER ARMOUR','OPTIMUM NUTRITION','MYPROTEIN','MUSCLETECH','GHOST','HEADS FIT'];
+const brandNames=[...new Set(products.map(p=>p.marca))];
 const categoryLabels={'CAMISETAS':'Camisetas','PANTALONETAS':'Pantalonetas','PANTALONES':'Pantalones','LEGGINGS':'Mallas','HOODIES':'Sudaderas','MUJER':'Mujer','PROTEÍNA':'Proteínas','CREATINA':'Creatina','PRE-ENTRENO':'Preentrenos','VITAMINAS':'Vitaminas','HIDRATACIÓN':'Hidratación','BOLSOS':'Bolsos','FUERZA':'Fuerza','PROTECCIÓN':'Protección','SHORTS':'Pantalonetas'};
 const countBy=b=>products.filter(p=>clean(p.marca)===clean(b)).length;
 const normalBrand=b=>brandNames.find(x=>clean(x)===clean(b))||b;
@@ -51,7 +47,7 @@ function open(d){if(d&&!d.open)d.showModal()}
 function close(d){if(d?.open)d.close()}
 const drawer=makeDialog('hf-drawer','<div class="hf-drawer-head"><div><p>HEADS FIT / TU SELECCIÓN</p><h2>MI BOLSA <span class="hf-count">0</span></h2></div><button class="hf-close" type="button" aria-label="Cerrar bolsa">×</button></div><div class="hf-drawer-body"></div><div class="hf-drawer-foot"></div>');
 const chooser=makeDialog('hf-choose','<button class="hf-choose-close" type="button" aria-label="Cerrar">×</button><p class="hf-small">PERSONALIZA TU PEDIDO</p><h2 id="hf-choose-title"></h2><p class="hf-help">Selecciona las opciones que prefieres. Confirmaremos su disponibilidad.</p><div class="hf-options-grid"><label class="hf-option"><span id="hf-color-label">COLOR O SABOR</span><select id="hf-color"></select></label><label class="hf-option"><span id="hf-size-label">TALLA O PRESENTACIÓN</span><select id="hf-size"></select></label></div><div class="hf-choice-quantity"><label for="hf-qty">CANTIDAD</label><div class="hf-qty-control"><button type="button" data-choice-adjust="-1" aria-label="Disminuir cantidad">−</button><input id="hf-qty" type="number" min="1" max="99" value="1" inputmode="numeric"><button type="button" data-choice-adjust="1" aria-label="Aumentar cantidad">+</button></div></div><p class="hf-availability">Los colores, tallas y presentaciones son preferencias sujetas a confirmación.</p><button type="button" class="hf-confirm">AÑADIR A MI BOLSA ↗</button>');
-const quick=makeDialog('hf-quick','<button type="button" class="hf-quick-close" aria-label="Cerrar detalle">×</button><div class="hf-quick-layout"><div class="hf-quick-image"></div><div class="hf-quick-body"><p class="hf-small hf-quick-brand"></p><h2 class="hf-quick-title"></h2><p class="hf-quick-desc"></p><div class="hf-quick-info"><span>DETALLES</span><p class="hf-quick-features"></p></div><div class="hf-quick-info"><span>IMPORTANTE</span><p class="hf-quick-advice"></p></div><button type="button" class="hf-quick-add">AÑADIR A MI BOLSA ↗</button><p class="hf-quick-notice">Catálogo orientativo: precios y existencias se confirman por WhatsApp. Las imágenes pueden ser ilustrativas.</p><a class="hf-original-source" target="_blank" rel="noopener noreferrer" hidden>VER FICHA EN LA TIENDA OFICIAL ↗</a></div></div>');
+const quick=makeDialog('hf-quick','<button type="button" class="hf-quick-close" aria-label="Cerrar detalle">×</button><div class="hf-quick-layout"><div class="hf-quick-image"></div><div class="hf-quick-body"><p class="hf-small hf-quick-brand"></p><h2 class="hf-quick-title"></h2><p class="hf-quick-desc"></p><div class="hf-quick-info"><span>DETALLES</span><p class="hf-quick-features"></p></div><div class="hf-quick-info"><span>IMPORTANTE</span><p class="hf-quick-advice"></p></div><button type="button" class="hf-quick-add">AÑADIR A MI BOLSA ↗</button><p class="hf-quick-notice">Catálogo orientativo: precios y existencias se confirman por WhatsApp. Las imágenes pueden ser ilustrativas.</p><a class="hf-original-source" target="_blank" rel="noopener noreferrer" hidden>VER REFERENCIA DEL PRODUCTO ↗</a></div></div>');
 let active=null;
 function add(p,variant,color,quantity){
  const qty=Math.min(99,Math.max(1,Math.trunc(Number(quantity)||1)));
@@ -89,26 +85,46 @@ function choose(p){
  $('.hf-help',chooser).textContent='Elige tus opciones preferidas para consultar disponibilidad.';
  open(chooser);
 }
-function show(p){
+function show(p,variantIndex=0){
  if(!p)return;active=p;
  $('.hf-quick-brand',quick).textContent=p.marca+' / '+(categoryLabels[p.categoria]||p.categoria);
  $('.hf-quick-title',quick).textContent=p.nombre;
  $('.hf-quick-desc',quick).textContent=p.descripcion||'Descubre los detalles de este producto.';
- $('.hf-quick-features',quick).textContent=p.detalles||'Detalles por confirmar.';
- $('.hf-quick-advice',quick).textContent=p.consejo||'Consulta tallas, ingredientes y disponibilidad.';
+ $('.hf-quick-features',quick).textContent=[p.ajuste&&('Ajuste: '+p.ajuste),p.material&&('Material: '+p.material)].filter(Boolean).join(' · ')||'Consultar ficha original del producto.';
+ $('.hf-quick-advice',quick).textContent=p.uso||'Consulta tallas, ingredientes y disponibilidad.';
  const origin=$('.hf-original-source',quick); if(origin){const official=p.fuente && /^https:\/\//.test(p.fuente);origin.hidden=!official;if(official)origin.href=p.fuente;else origin.removeAttribute('href');}
- $('.hf-quick-image',quick).innerHTML='<img alt="'+safe(p.nombre)+'" src="'+safe(p.imagen||fallback[p.tipo])+'" data-fallback="'+safe(fallback[p.tipo])+'" loading="lazy">';
+ const variantImage=p.variantes?.[variantIndex]?.imagen||p.imagen;
+ $('.hf-quick-image',quick).innerHTML='<img alt="'+safe(p.nombre)+'" src="'+safe(variantImage||PLACEHOLDER)+'" data-fallback="1" loading="lazy">';
  open(quick);
 }
 const byId=id=>products.find(p=>p.id===id);
 document.addEventListener('click',e=>{
  const t=e.target;
+ const swatch=t.closest('[data-swatch-index]');
+ if(swatch){
+   const card=swatch.closest('.hf-product'),p=card&&byId(card.dataset.productId),index=Number(swatch.dataset.swatchIndex);
+   if(!p||!p.variantes||!p.variantes[index])return;
+   card.dataset.colorIndex=String(index);
+   const caption=$('.hf-variant-name',card);if(caption)caption.textContent=p.variantes[index].nombre;
+   const img=$('img.hf-product-photo',card),item=p.variantes[index];
+   if(img){img.src=item.imagen||p.imagen;img.alt=p.nombre+' · '+item.nombre;delete img.dataset.failed;}
+   $('.hf-swatch',card).forEach((b,i)=>{b.classList.toggle('selected',i===index);b.setAttribute('aria-pressed',String(i===index));});
+   return;
+ }
+ const opener=t.closest('[data-overlay-open]');
+ if(opener){const card=opener.closest('.hf-product');if(card){const opened=!card.classList.contains('is-open');$('.hf-product.is-open').filter(x=>x!==card).forEach(x=>{x.classList.remove('is-open');$('.hf-photo-open',x)?.setAttribute('aria-expanded','false');});card.classList.toggle('is-open',opened);opener.setAttribute('aria-expanded',String(opened));}return;}
+ const closeQuick=t.closest('[data-close-overlay]');
+ if(closeQuick){const card=closeQuick.closest('.hf-product');card?.classList.remove('is-open');$('.hf-photo-open',card)?.setAttribute('aria-expanded','false');return;}
+ const qChange=t.closest('[data-quick-qty]');
+ if(qChange){const card=qChange.closest('.hf-product'),display=$('.hf-quick-qty-value',card);if(card&&display){const q=Math.max(1,Math.min(99,Number(card.dataset.quantity||'1')+Number(qChange.dataset.quickQty)));card.dataset.quantity=String(q);display.textContent=String(q);}return;}
+ const quickSize=t.closest('[data-quick-size]');
+ if(quickSize){const card=quickSize.closest('.hf-product'),p=card&&byId(card.dataset.productId);if(!p)return;const variant=p.variantes?.[Number(card.dataset.colorIndex||0)]||p.variantes?.[0];const qty=Math.max(1,Math.min(99,Number(card.dataset.quantity||'1')));add(p,quickSize.dataset.quickSize,variant?.nombre||'Por confirmar',qty);return;}
  if(t.closest('#hf-open-cart')){renderCart();open(drawer)}
  if(t.closest('.hf-close'))close(drawer);
  if(t.closest('.hf-choose-close'))close(chooser);
  if(t.closest('.hf-quick-close'))close(quick);
  const addBtn=t.closest('[data-buy]');if(addBtn){choose(byId(addBtn.dataset.buy));return;}
- const detailBtn=t.closest('[data-detail]');if(detailBtn){show(byId(detailBtn.dataset.detail));return;}
+ const detailBtn=t.closest('[data-detail]');if(detailBtn){const card=detailBtn.closest('.hf-product');show(byId(detailBtn.dataset.detail),Number(card?.dataset.colorIndex||0));return;}
  if(t.closest('.hf-quick-add'))choose(active);
  const adjust=t.closest('[data-choice-adjust]');
  if(adjust){const el=$('#hf-qty',chooser);el.value=String(Math.min(99,Math.max(1,(Number(el.value)||1)+Number(adjust.dataset.choiceAdjust))));}
@@ -130,14 +146,24 @@ $$('.footer-social [aria-label="WhatsApp"]').forEach(icon=>{const a=document.cre
 syncCount();renderCart();
 
 function card(p,i){
- const alt=safe(p.nombre),im=safe(p.imagen||fallback[p.tipo]);
- return '<article class="hf-product" style="--stagger:'+Math.min(i%12,11)+'" data-product-id="'+safe(p.id)+'">'+
- '<button type="button" class="hf-product-photo" data-detail="'+safe(p.id)+'" aria-label="Ver detalles de '+alt+'">'+
- '<img src="'+im+'" alt="'+alt+'" data-fallback="'+safe(fallback[p.tipo])+'" loading="lazy" decoding="async"><span class="hf-photo-overlay">VER PRODUCTO ↗</span>'+
- (p.etiqueta?'<span class="hf-tag">'+safe(p.etiqueta)+'</span>':'')+'</button>'+
- '<div class="hf-product-details"><div class="hf-meta"><a href="catalogo.html?marca='+encodeURIComponent(p.marca)+'">'+safe(p.marca)+'</a><span>'+safe(categoryLabels[p.categoria]||p.categoria)+'</span></div>'+
- '<h3>'+alt+'</h3><p>'+safe(p.descripcion||'Descubre este producto deportivo.')+'</p>'+
- '<div class="hf-product-footer"><span>CONSULTAR PRECIO</span><button type="button" data-buy="'+safe(p.id)+'" aria-label="Añadir '+alt+' a la bolsa">AÑADIR <span aria-hidden="true">↗</span></button></div></div></article>';
+ const img=safe(p.imagen||PLACEHOLDER),title=safe(p.nombre),id=safe(p.id);
+ const variants=(p.variantes&&p.variantes.length?p.variantes:[{nombre:'Por confirmar',hex:'#8c8e8a',imagen:p.imagen}]);
+ const swatches=variants.map((v,k)=>'<button type="button" class="hf-swatch'+(k===0?' selected':'')+'" style="--swatch:'+safe(v.hex||'#999')+'" data-swatch-index="'+k+'" aria-pressed="'+(k===0?'true':'false')+'" aria-label="Color o sabor '+safe(v.nombre)+'" title="'+safe(v.nombre)+'"><span></span></button>').join('');
+ const sizes=(p.tallas&&p.tallas.length?p.tallas:['Por confirmar']).map(t=>'<button type="button" class="hf-size-button" data-quick-size="'+safe(t)+'" title="Añadir '+title+' en talla o presentación '+safe(t)+'">'+safe(t.replace(' / consultar',''))+'</button>').join('');
+ const kind=p.tipo==='ropa'?'TALLA':p.tipo==='suplementos'?'PRESENTACIÓN':'TAMAÑO / PRESENTACIÓN';
+ const colKind=p.tipo==='suplementos'?'SABOR':'COLOR';
+ return '<article class="hf-product hf-compact" data-product-id="'+id+'" data-color-index="0" data-quantity="1" style="--stagger:'+Math.min(i%12,11)+'">'+
+ '<div class="hf-product-media"><img class="hf-product-photo" src="'+img+'" alt="'+title+'" data-fallback="1" loading="lazy" decoding="async">'+
+ '<span class="hf-tag">'+safe(p.etiqueta||'COLECCIÓN')+'</span>'+
+ '<button type="button" class="hf-photo-open" data-overlay-open aria-expanded="false" aria-label="Elegir opciones para '+title+'"><span>VER OPCIONES</span><b>+</b></button>'+
+ '<div class="hf-quick-panel"><div class="hf-quick-panel-header"><strong>ELIGE TU OPCIÓN</strong><button type="button" data-close-overlay aria-label="Cerrar opciones">×</button></div>'+
+ '<div class="hf-quick-line"><span>'+colKind+'</span><span class="hf-quick-note">Según consulta</span></div>'+
+ '<div class="hf-swatches">'+swatches+'<small class="hf-variant-name">'+safe(variants[0].nombre)+'</small></div>'+
+ '<div class="hf-quick-footer"><span>CANTIDAD</span><div class="hf-quantity"><button type="button" data-quick-qty="-1" aria-label="Menos unidades">−</button><output class="hf-quick-qty-value">1</output><button type="button" data-quick-qty="1" aria-label="Más unidades">+</button></div></div>'+
+ '<div class="hf-quick-line"><span>'+kind+'</span><span class="hf-quick-note">Toca para añadir</span></div>'+
+ '<div class="hf-size-list">'+sizes+'</div>'+
+ '</div></div><div class="hf-product-bottom"><span class="hf-product-brand">'+safe(p.marca)+'</span>'+
+ '<h3>'+title+'</h3><button type="button" class="hf-detail-link" data-detail="'+id+'">VER DETALLES <span aria-hidden="true">↗</span></button></div></article>';
 }
 function renderBrands(){
  const root=$('#hf-brand-directory');if(!root)return;
@@ -152,7 +178,7 @@ function renderBrands(){
   ['MUSCLETECH','Explora la nutrición deportiva.','SUPLEMENTOS / FUERZA','https://images.unsplash.com/photo-1593095948071-474c5cc2989d?auto=format&fit=crop&w=1100&q=85'],
   ['GHOST','Tu elección, tu entrenamiento.','SUPLEMENTOS / ENERGÍA','https://images.unsplash.com/photo-1579722821273-0f6c7d44362f?auto=format&fit=crop&w=1100&q=85']
  ];
- root.innerHTML=info.filter(b=>countBy(b[0])).map((b,i)=>'<a class="hf-brand-card" href="catalogo.html?marca='+encodeURIComponent(b[0])+'" style="--stagger:'+i+';--brand-bg:url(\''+b[3]+'\')"><span class="hf-brand-index">'+String(i+1).padStart(2,'0')+' / '+safe(b[2])+'</span><div class="hf-brand-main"><h3>'+safe(b[0])+'</h3><p>'+safe(b[1])+'</p></div><div class="hf-brand-bottom"><span>'+countBy(b[0])+' ARTÍCULOS</span><b>EXPLORAR COLECCIÓN ↗</b></div></a>').join('');
+ root.innerHTML=info.filter(b=>countBy(b[0])).map((b,i)=>'<a class="hf-brand-card" href="catalogo.html?marca='+encodeURIComponent(b[0])+'" style="--stagger:'+i+';--brand-bg:url(\''+safe((products.find(p=>p.marca===b[0])||{}).imagen||PLACEHOLDER)+'\')"><span class="hf-brand-index">'+String(i+1).padStart(2,'0')+' / '+safe(b[2])+'</span><div class="hf-brand-main"><h3>'+safe(b[0])+'</h3><p>'+safe(b[1])+'</p></div><div class="hf-brand-bottom"><span>'+countBy(b[0])+' ARTÍCULOS</span><b>EXPLORAR COLECCIÓN ↗</b></div></a>').join('');
 }
 
 function renderCatalog(){
