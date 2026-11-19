@@ -1,6 +1,17 @@
 document.documentElement.classList.remove('no-js');
 (() => {
   const loader = document.querySelector('.site-loader');
+  const page = location.pathname.split('/').pop() || 'index.html';
+  const isGym = page === 'catalogo.html' && (new URLSearchParams(location.search).get('marca') || '').toUpperCase() === 'GYMSHARK';
+  if (loader && isGym) {
+    loader.classList.add('hf-gym-loader');
+    loader.innerHTML = '<img src="assets/img/gymshark/gymshark.png" alt="Gymshark"><div class="loader-bar"><i></i></div>';
+  } else if (loader && page === 'index.html') {
+    let first = true;
+    try { first = !sessionStorage.getItem('hf-visited'); sessionStorage.setItem('hf-visited','1'); } catch (_) {}
+    if (first) loader.innerHTML = '<span>Welcome</span><div class="loader-bar"><i></i></div>';
+  }
+  setTimeout(() => loader?.classList.add('done'), 4000);
   const menuToggle = document.querySelector('.menu-toggle');
   const nav = document.querySelector('.main-nav');
 

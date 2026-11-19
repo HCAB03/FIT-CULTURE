@@ -402,3 +402,6 @@
 .hf-sheet-size{overflow-wrap:anywhere;line-height:1.25}
 .hf-sheet-swatch:hover{transform:translateY(-2px)}
 @media(prefers-reduced-motion:reduce){.hf-sheet-swatch:hover{transform:none}}
+
+/* HEADS FIT: lanzamiento Gymshark */
+.hf-price{font-weight:800;font-size:1.1rem;margin:.25rem 0 .6rem;color:inherit}.site-loader.hf-gym-loader{background:#fafafa;color:#111}.hf-gym-loader img{width:clamp(200px,42vw,350px);height:auto;object-fit:contain;animation:hf-logo-in .5s ease both}.hf-gym-loader .loader-bar{background:#ddd}.hf-gym-loader .loader-bar i{background:#131313}.hf-brand-wordmark{width:clamp(180px,35vw,300px);height:auto;display:block}.hf-product-bottom .hf-price{display:block}.hf-gym-loader .loader-bar{margin-top:20px}@keyframes hf-logo-in{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}@media(prefers-reduced-motion:reduce){.hf-gym-loader img{animation:none}}
