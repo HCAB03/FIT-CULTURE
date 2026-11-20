@@ -1,12 +1,12 @@
 /* HEADS FIT · catálogo V3 sin backend · pedido consultivo por WhatsApp */
 (() => {
 'use strict';
-const PHONE='593983551261', KEY='heads-fit-pedido-v2';
+const PHONE='593983551261', KEY='heads-fit-pedido-gymshark-v1';
 const $=(s,root=document)=>root.querySelector(s), $$=(s,root=document)=>[...root.querySelectorAll(s)];
 const clean=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
 const safe=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const wa=s=>'https://wa.me/'+PHONE+'?text='+encodeURIComponent(s);
-const products=(window.HEADS_PRODUCTS||[]).map(p=>({...p,nombre:String(p.nombre||''),marca:String(p.marca||''),tipo:String(p.tipo||'')}));
+const money=n=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(n); const sizesFor=(p,v)=>p?.variantes?.find(x=>x.nombre===v)?.tallas||[]; const products=(window.HEADS_PRODUCTS||[]).map(p=>({...p,nombre:String(p.nombre||''),marca:String(p.marca||''),tipo:String(p.tipo||'')}));
 const page=location.pathname.split('/').pop()||'index.html';
 const query=new URLSearchParams(location.search);
 const catalogPages=['ropa.html','suplementos.html','accesorios.html','catalogo.html'];
@@ -38,7 +38,7 @@ if(header){
 }
 
 let cart=[];
-try{const stored=JSON.parse(localStorage.getItem(KEY)||'[]');if(Array.isArray(stored))cart=stored.filter(x=>x&&typeof x.name==='string'&&typeof x.brand==='string'&&typeof x.category==='string'&&Number.isInteger(x.qty)&&x.qty>0&&x.qty<100).slice(0,90);}catch(_){}
+try{const stored=JSON.parse(localStorage.getItem(KEY)||'[]');if(Array.isArray(stored))cart=stored.filter(x=>x&&typeof x.name==='string'&&typeof x.brand==='string'&&typeof x.category==='string'&&Number.isInteger(x.qty)&&x.qty>0&&x.qty<100&&Number.isFinite(x.price)&&products.some(p=>p.nombre===x.name&&p.marca===x.brand&&p.precio===x.price&&sizesFor(p,x.color).includes(x.variant))).slice(0,90);}catch(_){}
 function persist(){try{localStorage.setItem(KEY,JSON.stringify(cart));}catch(_){}}
 function units(){return cart.reduce((sum,x)=>sum+x.qty,0)}
 function syncCount(){$$('.hf-count').forEach(el=>el.textContent=units())}
@@ -59,11 +59,12 @@ const chooser=makeDialog('hf-choose',
  '<div class="hf-sheet-sticky"><button class="hf-confirm" type="button" disabled>ELIGE UNA TALLA PARA CONTINUAR</button><p class="hf-help" role="status">Confirmaremos las opciones y el precio por WhatsApp.</p></div>');
 chooser.setAttribute('aria-labelledby','hf-choose-title');
 let chosen={index:0,size:'',qty:1};
-const quick=makeDialog('hf-quick','<button type="button" class="hf-quick-close" aria-label="Cerrar detalle">×</button><div class="hf-quick-layout"><div class="hf-quick-image"></div><div class="hf-quick-body"><p class="hf-small hf-quick-brand"></p><h2 class="hf-quick-title"></h2><p class="hf-quick-desc"></p><div class="hf-quick-info"><span>DETALLES</span><p class="hf-quick-features"></p></div><div class="hf-quick-info"><span>IMPORTANTE</span><p class="hf-quick-advice"></p></div><button type="button" class="hf-quick-add">AÑADIR A MI BOLSA ↗</button><p class="hf-quick-notice">Catálogo orientativo: precios y existencias se confirman por WhatsApp. Las imágenes pueden ser ilustrativas.</p><a class="hf-original-source" target="_blank" rel="noopener noreferrer" hidden>VER REFERENCIA DEL PRODUCTO ↗</a></div></div>');
-let active=null;
+const quick=makeDialog('hf-quick','<button type="button" class="hf-quick-close" aria-label="Cerrar detalle">×</button><div class="hf-quick-layout"><div class="hf-quick-image"></div><div class="hf-quick-body"><p class="hf-small hf-quick-brand"></p><h2 class="hf-quick-title"></h2><p class="hf-quick-desc"></p><div class="hf-quick-info"><span>DETALLES</span><p class="hf-quick-features"></p></div><div class="hf-quick-info"><span>IMPORTANTE</span><p class="hf-quick-advice"></p></div><button type="button" class="hf-quick-add">AÑADIR A MI BOLSA ↗</button><p class="hf-quick-notice">Disponibilidad por confirmar antes de realizar el pago. Imágenes de referencia de la prenda.</p><a class="hf-original-source" target="_blank" rel="noopener noreferrer" hidden>VER REFERENCIA DEL PRODUCTO ↗</a></div></div>');
+let active=null; const total=()=>cart.reduce((s,x)=>s+x.qty*x.price,0);
 function add(p,variant,color,quantity){
+ if(!p||!sizesFor(p,color).includes(variant))return;
  const qty=Math.min(99,Math.max(1,Math.trunc(Number(quantity)||1)));
- const next={name:p.nombre,brand:p.marca,category:p.categoria,variant:variant||'',color:color||'',qty};
+ const next={name:p.nombre,brand:p.marca,category:p.categoria,variant:variant||'',color:color||'',qty,price:p.precio};
  const old=cart.find(x=>x.name===next.name&&x.brand===next.brand&&x.variant===next.variant&&(x.color||'')===next.color);
  if(old)old.qty=Math.min(99,old.qty+qty);else cart.push(next);
  persist();syncCount();renderCart();close(chooser);open(drawer);
@@ -73,11 +74,11 @@ function renderCart(){
  if(!cart.length){
    body.innerHTML='<div class="hf-empty"><h3>Tu bolsa te espera.</h3><p>Descubre tus favoritos y agrégalos para consultarnos por WhatsApp.</p><a href="catalogo.html">EXPLORAR CATÁLOGO ↗</a></div>';foot.innerHTML='';return;
  }
- body.innerHTML=cart.map((x,i)=>'<div class="hf-item"><div><span class="hf-small">'+safe(x.brand)+' / '+safe(x.category)+'</span><h3>'+safe(x.name)+'</h3>'+(x.color?'<p>Color / sabor: '+safe(x.color)+'</p>':'')+(x.variant?'<p>Talla / presentación: '+safe(x.variant)+'</p>':'')+'<small>Precio y disponibilidad por confirmar</small></div><div class="hf-item-actions"><button data-qty="-1" data-index="'+i+'" aria-label="Disminuir cantidad">−</button><strong>'+x.qty+'</strong><button data-qty="1" data-index="'+i+'" aria-label="Aumentar cantidad">+</button><button class="hf-remove" data-remove="'+i+'">QUITAR</button></div></div>').join('');
- foot.innerHTML='<p>'+units()+' unidad(es) seleccionada(s). Te confirmaremos precios y disponibilidad.</p><button class="hf-send" type="button">PEDIR POR WHATSAPP ↗</button><small>Se abre WhatsApp con el mensaje preparado; confirma el envío allí.</small>';
+ body.innerHTML=cart.map((x,i)=>'<div class="hf-item"><div><span class="hf-small">'+safe(x.brand)+' / '+safe(x.category)+'</span><h3>'+safe(x.name)+'</h3>'+(x.color?'<p>Color / sabor: '+safe(x.color)+'</p>':'')+(x.variant?'<p>Talla / presentación: '+safe(x.variant)+'</p>':'')+'<small>'+money(x.price)+' c/u · '+money(x.price*x.qty)+'</small></div><div class="hf-item-actions"><button data-qty="-1" data-index="'+i+'" aria-label="Disminuir cantidad">−</button><strong>'+x.qty+'</strong><button data-qty="1" data-index="'+i+'" aria-label="Aumentar cantidad">+</button><button class="hf-remove" data-remove="'+i+'">QUITAR</button></div></div>').join('');
+ foot.innerHTML='<p>'+units()+' unidad(es) · Total: '+money(total())+'. Disponibilidad por confirmar.</p><button class="hf-send" type="button">PEDIR POR WHATSAPP ↗</button><small>Se abre WhatsApp con el mensaje preparado; confirma el envío allí.</small>';
 }
 function msg(){
- return ['¡Hola! Quisiera consultar mi selección de HEADS FIT:','',...cart.map((x,i)=>(i+1)+'. '+x.name+' · '+x.brand+(x.color?' · Color/sabor: '+x.color:'')+(x.variant?' · Talla/presentación: '+x.variant:'')+' · Cantidad '+x.qty),'','Total: '+units()+' unidades.','¿Podrían confirmarme precios, disponibilidad, formas de pago y entrega? ¡Gracias!'].join('\n');
+ return ['¡Hola! Quisiera consultar mi selección de HEADS FIT:','',...cart.map((x,i)=>(i+1)+'. '+x.name+' · '+x.brand+(x.color?' · Color/sabor: '+x.color:'')+(x.variant?' · Talla/presentación: '+x.variant:'')+' · Cantidad '+x.qty+' · '+money(x.price*x.qty)),'','Total: '+units()+' unidades · '+money(total()),'¿Podrían confirmarme disponibilidad, formas de pago y entrega? ¡Gracias!'].join('\n');
 }
 function choose(p,variant=0){
  if(!p)return;
@@ -86,14 +87,14 @@ function choose(p,variant=0){
  const sizes=p.tallas?.length?p.tallas:['Por confirmar'];
  chosen={index:Math.max(0,Math.min(variants.length-1,variant)),size:'',qty:1};
  $('#hf-choose-title',chooser).textContent=p.nombre;
- $('.hf-sheet-brand',chooser).textContent=p.marca;
+ $('.hf-sheet-brand',chooser).textContent=p.marca+' · '+money(p.precio);
  $('.hf-sheet-color-label',chooser).textContent=p.tipo==='suplementos'?'SABOR':'COLOR';
  $('.hf-sheet-size-label',chooser).textContent=p.tipo==='ropa'?'TALLA':p.tipo==='suplementos'?'PRESENTACIÓN':'TAMAÑO / PRESENTACIÓN';
  $('.hf-sheet-sizes',chooser).innerHTML=sizes.map(v=>'<button type="button" class="hf-sheet-size" data-sheet-size="'+safe(v)+'" aria-pressed="false">'+safe(v.replace(' / consultar',''))+'</button>').join('');
  $('.hf-sheet-swatches',chooser).innerHTML=variants.map((v,i)=>'<button type="button" class="hf-sheet-swatch'+(i===chosen.index?' selected':'')+'" data-sheet-color="'+i+'" aria-pressed="'+(i===chosen.index?'true':'false')+'" aria-label="Color o sabor: '+safe(v.nombre)+'" title="'+safe(v.nombre)+'"><i style="background:'+safe(v.hex||'#999')+'"></i></button>').join('');
  $('.hf-sheet-qty-value',chooser).textContent='1';
  $('.hf-sheet-size-hint',chooser).textContent='Selecciona tu opción';
- $('.hf-help',chooser).textContent='Confirmaremos opciones, precio y disponibilidad por WhatsApp.';
+ $('.hf-help',chooser).textContent='Confirmaremos la disponibilidad por WhatsApp.';
  updateSheet();
  open(chooser);
 }
@@ -101,6 +102,8 @@ function updateSheet(){
  if(!active)return;
  const variants=active.variantes?.length?active.variantes:[{nombre:'Por confirmar',imagen:active.imagen}];
  const v=variants[chosen.index]||variants[0];
+ const validSizes=v.tallas||[]; if(!validSizes.includes(chosen.size))chosen.size='';
+ $('.hf-sheet-sizes',chooser).innerHTML=validSizes.map(t=>'<button type="button" class="hf-sheet-size" data-sheet-size="'+safe(t)+'" aria-pressed="false">'+safe(t)+'</button>').join('');
  const photo=$('.hf-sheet-image',chooser);
  photo.src=v.imagen||active.imagen||PLACEHOLDER;
  photo.alt=active.nombre+' · '+v.nombre;
@@ -116,7 +119,7 @@ function updateSheet(){
 }
 function show(p,variantIndex=0){
  if(!p)return;active=p;
- $('.hf-quick-brand',quick).textContent=p.marca+' / '+(categoryLabels[p.categoria]||p.categoria);
+ $('.hf-quick-brand',quick).textContent=p.marca+' / '+(categoryLabels[p.categoria]||p.categoria)+' · '+money(p.precio);
  $('.hf-quick-title',quick).textContent=p.nombre;
  $('.hf-quick-desc',quick).textContent=p.descripcion||'Descubre los detalles de este producto.';
  $('.hf-quick-features',quick).textContent=[p.ajuste&&('Ajuste: '+p.ajuste),p.material&&('Material: '+p.material)].filter(Boolean).join(' · ')||'Consultar ficha original del producto.';
@@ -154,6 +157,7 @@ document.addEventListener('click',e=>{
    card.dataset.colorIndex=String(index);
    const caption=$('.hf-variant-name',card);if(caption)caption.textContent=p.variantes[index].nombre;
    const img=$('img.hf-product-photo',card),item=p.variantes[index];
+    $('.hf-size-list',card).innerHTML=item.tallas.map(t=>'<button type="button" class="hf-size-button" data-quick-size="'+safe(t)+'">'+safe(t)+'</button>').join('');
    if(img){img.src=item.imagen||p.imagen;img.alt=p.nombre+' · '+item.nombre;delete img.dataset.failed;}
    $$('.hf-swatch',card).forEach((b,i)=>{b.classList.toggle('selected',i===index);b.setAttribute('aria-pressed',String(i===index));});
    return;
@@ -206,7 +210,7 @@ function card(p,i){
  const img=safe(p.imagen||PLACEHOLDER),title=safe(p.nombre),id=safe(p.id);
  const variants=(p.variantes&&p.variantes.length?p.variantes:[{nombre:'Por confirmar',hex:'#8c8e8a',imagen:p.imagen}]);
  const swatches=variants.map((v,k)=>'<button type="button" class="hf-swatch'+(k===0?' selected':'')+'" style="--swatch:'+safe(v.hex||'#999')+'" data-swatch-index="'+k+'" aria-pressed="'+(k===0?'true':'false')+'" aria-label="Color o sabor '+safe(v.nombre)+'" title="'+safe(v.nombre)+'"><span></span></button>').join('');
- const sizes=(p.tallas&&p.tallas.length?p.tallas:['Por confirmar']).map(t=>'<button type="button" class="hf-size-button" data-quick-size="'+safe(t)+'" title="Añadir '+title+' en talla o presentación '+safe(t)+'">'+safe(t.replace(' / consultar',''))+'</button>').join('');
+ const sizes=variants[0].tallas.map(t=>'<button type="button" class="hf-size-button" data-quick-size="'+safe(t)+'" title="Añadir '+title+' en talla o presentación '+safe(t)+'">'+safe(t.replace(' / consultar',''))+'</button>').join('');
  const kind=p.tipo==='ropa'?'TALLA':p.tipo==='suplementos'?'PRESENTACIÓN':'TAMAÑO / PRESENTACIÓN';
  const colKind=p.tipo==='suplementos'?'SABOR':'COLOR';
  return '<article class="hf-product hf-compact" data-product-id="'+id+'" data-color-index="0" data-quantity="1" style="--stagger:'+Math.min(i%12,11)+'">'+
@@ -214,27 +218,17 @@ function card(p,i){
  '<span class="hf-tag">'+safe(p.etiqueta||'COLECCIÓN')+'</span>'+
  '<button type="button" class="hf-photo-open" data-overlay-open aria-expanded="false" aria-label="Elegir opciones para '+title+'"><span>PERSONALIZAR</span><b>+</b></button>'+
  '<div class="hf-quick-panel"><div class="hf-quick-panel-header"><strong>ELIGE TU OPCIÓN</strong><button type="button" data-close-overlay aria-label="Cerrar opciones">×</button></div>'+
- '<div class="hf-quick-line"><span>'+colKind+'</span><span class="hf-quick-note">Según consulta</span></div>'+
+ '<div class="hf-quick-line"><span>'+colKind+'</span><span class="hf-quick-note">Color seleccionado</span></div>'+
  '<div class="hf-swatches">'+swatches+'<small class="hf-variant-name">'+safe(variants[0].nombre)+'</small></div>'+
  '<div class="hf-quick-footer"><span>CANTIDAD</span><div class="hf-quantity"><button type="button" data-quick-qty="-1" aria-label="Menos unidades">−</button><output class="hf-quick-qty-value">1</output><button type="button" data-quick-qty="1" aria-label="Más unidades">+</button></div></div>'+
  '<div class="hf-quick-line"><span>'+kind+'</span><span class="hf-quick-note">Toca para añadir</span></div>'+
  '<div class="hf-size-list">'+sizes+'</div>'+
  '</div></div><div class="hf-product-bottom"><span class="hf-product-brand">'+safe(p.marca)+'</span>'+
- '<h3>'+title+'</h3><button type="button" class="hf-detail-link" data-detail="'+id+'">VER DETALLES <span aria-hidden="true">↗</span></button></div></article>';
+ '<h3>'+title+'</h3><p class="hf-price">'+money(p.precio)+'</p><button type="button" class="hf-detail-link" data-detail="'+id+'">VER DETALLES <span aria-hidden="true">↗</span></button></div></article>';
 }
 function renderBrands(){
  const root=$('#hf-brand-directory');if(!root)return;
- const info=[
-  ['GYMSHARK','El entrenamiento es una forma de vida.','ATLETISMO / GIMNASIO','https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1100&q=85'],
-  ['YoungLA','Prendas que se mueven contigo.','FUERZA / ESTILO','https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1100&q=85'],
-  ['NIKE','Movimiento que inspira.','DEPORTE / INNOVACIÓN','https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1100&q=85'],
-  ['ADIDAS','Estilo y rendimiento en cada sesión.','ENTRENAMIENTO / ESTILO','https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1100&q=85'],
-  ['UNDER ARMOUR','Preparado para cada repetición.','RENDIMIENTO / FUERZA','https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=1100&q=85'],
-  ['OPTIMUM NUTRITION','Nutrición deportiva para tus objetivos.','SUPLEMENTOS / PROTEÍNA','https://images.unsplash.com/photo-1593095948071-474c5cc2989d?auto=format&fit=crop&w=1100&q=85'],
-  ['MYPROTEIN','Complementos para tu rutina.','SUPLEMENTOS / NUTRICIÓN','https://images.unsplash.com/photo-1579722821273-0f6c7d44362f?auto=format&fit=crop&w=1100&q=85'],
-  ['MUSCLETECH','Explora la nutrición deportiva.','SUPLEMENTOS / FUERZA','https://images.unsplash.com/photo-1593095948071-474c5cc2989d?auto=format&fit=crop&w=1100&q=85'],
-  ['GHOST','Tu elección, tu entrenamiento.','SUPLEMENTOS / ENERGÍA','https://images.unsplash.com/photo-1579722821273-0f6c7d44362f?auto=format&fit=crop&w=1100&q=85']
- ];
+ const info=[['GYMSHARK','Ropa deportiva para tu siguiente nivel.','ATLETISMO / GIMNASIO','']];
  root.innerHTML=info.filter(b=>countBy(b[0])).map((b,i)=>'<a class="hf-brand-card" href="catalogo.html?marca='+encodeURIComponent(b[0])+'" style="--stagger:'+i+';--brand-bg:url(\''+safe((products.find(p=>p.marca===b[0])||{}).imagen||PLACEHOLDER)+'\')"><span class="hf-brand-index">'+String(i+1).padStart(2,'0')+' / '+safe(b[2])+'</span><div class="hf-brand-main"><h3>'+safe(b[0])+'</h3><p>'+safe(b[1])+'</p></div><div class="hf-brand-bottom"><span>'+countBy(b[0])+' ARTÍCULOS</span><b>EXPLORAR COLECCIÓN ↗</b></div></a>').join('');
 }
 
@@ -243,7 +237,7 @@ function renderCatalog(){
  const section=$('.catalog-section'),grid=$('.product-grid');if(!section||!grid)return;
  const root=document.createElement('div');root.className='hf-catalog-shell';
  const intro=$('.catalog-intro',section);
- if(intro)intro.innerHTML='<span class="micro-label">HEADS FIT / SELECCIÓN DEPORTIVA</span><h2>ENCUENTRA TU <em>PRÓXIMO FAVORITO.</em></h2><p>Explora marcas, encuentra tu estilo y arma tu selección. Consulta precios y disponibilidad directamente por WhatsApp.</p>';
+ if(intro)intro.innerHTML='<span class="micro-label">HEADS FIT / SELECCIÓN DEPORTIVA</span><h2>ENCUENTRA TU <em>PRÓXIMO FAVORITO.</em></h2><p>Explora la colección Gymshark y arma tu selección. Confirma la disponibilidad por WhatsApp.</p>';
  const oldToolbar=$('.catalog-toolbar',section);if(oldToolbar)oldToolbar.remove();
  const oldTools=$('.catalog-tools',section);if(oldTools)oldTools.remove();
  const oldEmpty=$('.catalog-empty',section);if(oldEmpty)oldEmpty.remove();
@@ -251,9 +245,9 @@ function renderCatalog(){
  // Mantener una sola fuente de productos, dejando los elementos de la versión anterior fuera del DOM.
  grid.innerHTML='';grid.className='hf-product-grid';
  root.innerHTML='<div class="hf-catalog-top"><div><p class="eyebrow">SELECCIÓN HEADS FIT</p><h2 id="hf-catalog-heading">TODO PARA TU PRÓXIMO NIVEL.</h2><p class="hf-catalog-caption">Elige tu favorito y consúltanos los detalles.</p></div><div class="hf-catalog-count" aria-live="polite"></div></div>'+
- '<div class="hf-filter-panel"><label class="hf-search"><span>⌕</span><input type="search" placeholder="Buscar productos, marcas y categorías..." aria-label="Buscar productos" id="hf-search" autocomplete="off"></label>'+
- '<label class="hf-select-label">MARCA <select id="hf-brand" aria-label="Filtrar por marca"><option value="">TODAS LAS MARCAS</option></select></label>'+
- '<label class="hf-select-label">ORDENAR <select id="hf-sort" aria-label="Ordenar productos"><option value="default">DESTACADOS</option><option value="name">NOMBRE A–Z</option><option value="brand">MARCA A–Z</option></select></label></div>'+
+ '<div class="hf-filter-panel"><label class="hf-search"><span>⌕</span><input type="search" placeholder="Buscar prendas, colores y categorías..." aria-label="Buscar productos" id="hf-search" autocomplete="off"></label>'+
+ '<label class="hf-select-label">GÉNERO <select id="hf-brand" aria-label="Filtrar por género"><option value="">TODOS</option></select></label>'+
+ '<label class="hf-select-label">ORDENAR <select id="hf-sort" aria-label="Ordenar productos"><option value="default">DESTACADOS</option><option value="name">NOMBRE A–Z</option><option value="price">PRECIO: MENOR A MAYOR</option><option value="price-desc">PRECIO: MAYOR A MENOR</option></select></label></div>'+
  '<div class="hf-filters-row"><div class="hf-chips" role="group" aria-label="Filtrar categorías"></div><button class="hf-clear" type="button">LIMPIAR FILTROS ↺</button></div>'+
  '<div class="hf-selection-label" aria-live="polite"></div>'+
  '<div class="hf-no-results" hidden><h3>NO ENCONTRAMOS ESE PRODUCTO.</h3><p>Prueba otra búsqueda o explora toda la selección.</p><button class="hf-reset" type="button">VER TODOS LOS ARTÍCULOS ↗</button></div>';
@@ -262,17 +256,17 @@ function renderCatalog(){
  const brand=$('#hf-brand',root),sort=$('#hf-sort',root),input=$('#hf-search',root),chips=$('.hf-chips',root);
  const categories=[...new Set(typeSet.map(p=>p.categoria))].sort((a,b)=>a.localeCompare(b,'es'));
  chips.innerHTML='<button class="hf-chip active" data-cat="" aria-pressed="true">TODOS</button>'+categories.map(c=>'<button class="hf-chip" data-cat="'+safe(c)+'" aria-pressed="false">'+safe(categoryLabels[c]||c)+'</button>').join('');
- const brands=[...new Set(typeSet.map(p=>p.marca))].sort((a,b)=>a.localeCompare(b,'es'));
+ const brands=[...new Set(typeSet.map(p=>p.genero))].sort((a,b)=>a.localeCompare(b,'es'));
  brand.insertAdjacentHTML('beforeend',brands.map(b=>'<option value="'+safe(b)+'">'+safe(b)+'</option>').join(''));
- const fromQuery=normalBrand(query.get('marca')||'');
+ const fromQuery=query.get('genero')||'';
  if(brands.includes(fromQuery))brand.value=fromQuery;
  let selectedCategory='',selectedBrand=brand.value,term='',order='default';
  const heading=$('#hf-catalog-heading',root);
  if(selectedBrand){heading.textContent=selectedBrand+' · DESCUBRE SU COLECCIÓN';document.title=selectedBrand+' — HEADS FIT';}
  function apply(){
-   const matched=typeSet.filter(p=>(!selectedBrand||clean(p.marca)===clean(selectedBrand))&&(!selectedCategory||p.categoria===selectedCategory)&&(!term||clean(p.nombre+' '+p.marca+' '+p.categoria+' '+p.descripcion).includes(term)));
+   const matched=typeSet.filter(p=>(!selectedBrand||clean(p.genero)===clean(selectedBrand))&&(!selectedCategory||p.categoria===selectedCategory)&&(!term||clean(p.nombre+' '+p.marca+' '+p.categoria+' '+p.descripcion+' '+p.variantes.map(v=>v.nombre).join(' ')).includes(term)));
    if(order==='name')matched.sort((a,b)=>a.nombre.localeCompare(b.nombre,'es'));
-   else if(order==='brand')matched.sort((a,b)=>a.marca.localeCompare(b.marca,'es')||a.nombre.localeCompare(b.nombre,'es'));
+   else if(order==='price')matched.sort((a,b)=>a.precio-b.precio); else if(order==='price-desc')matched.sort((a,b)=>b.precio-a.precio);
    grid.innerHTML=matched.map(card).join('');
    $('.hf-catalog-count',root).textContent=matched.length+' '+(matched.length===1?'ARTÍCULO':'ARTÍCULOS');
    $('.hf-selection-label',root).textContent=(selectedBrand?selectedBrand.toUpperCase()+' · ':'')+' '+(selectedCategory?categoryLabels[selectedCategory]||selectedCategory:'TODAS LAS CATEGORÍAS');
@@ -280,7 +274,7 @@ function renderCatalog(){
    $$('.hf-chip',root).forEach(b=>{const active=b.dataset.cat===selectedCategory;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});
    // La URL de marca puede copiarse y compartirse.
    if(page==='catalogo.html'){
-     const u=new URL(location.href);if(selectedBrand)u.searchParams.set('marca',selectedBrand);else u.searchParams.delete('marca');
+     const u=new URL(location.href);if(selectedBrand)u.searchParams.set('genero',selectedBrand);else u.searchParams.delete('genero');
      history.replaceState(null,'',u.pathname+u.search+u.hash);
    }
  }
@@ -296,8 +290,8 @@ function renderCatalog(){
 
 function homeEnhance(){
  if(page!=='index.html')return;
- const links=$('.brand-logos');if(links){
- links.innerHTML=['GYMSHARK','YoungLA','NIKE','ADIDAS','OPTIMUM NUTRITION'].map(b=>'<a href="catalogo.html?marca='+encodeURIComponent(b)+'" aria-label="Ver productos de '+safe(b)+'">'+safe(b)+' <span>↗</span></a>').join('');
+ const links=$('.brand-logos');if(links&&!links.querySelector('img')){
+ links.innerHTML=['GYMSHARK'].map(b=>'<a href="catalogo.html?marca='+encodeURIComponent(b)+'" aria-label="Ver productos de '+safe(b)+'">'+safe(b)+' <span>↗</span></a>').join('');
  }
  const banner=$('.discovery-links');if(banner&&!$('a[href="catalogo.html"]',banner))banner.insertAdjacentHTML('afterbegin','<a href="catalogo.html">00 / VER TODO EL CATÁLOGO <span>↗</span></a>');
  const section=$('#categories');if(section){
@@ -306,7 +300,7 @@ function homeEnhance(){
  section.insertAdjacentElement('afterend',ribbon);
  }
  const circle=$('.circle-link');if(circle)circle.href='catalogo.html';
- const hero=$('.hero-bottom p');if(hero)hero.innerHTML='Ropa, nutrición y accesorios para tu estilo de vida.<br>Elige lo que te impulsa. Nosotros te ayudamos a encontrarlo.';
+ const hero=$('.hero-bottom p');if(hero)hero.innerHTML='Ropa Gymshark para tu estilo de vida.<br>Elige lo que te impulsa. Nosotros te ayudamos a encontrarlo.';
 }
 renderBrands();renderCatalog();homeEnhance();
 })();
